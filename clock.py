@@ -25,6 +25,8 @@ center = HEIGHT/2
 time_input = feed_HMS.run()
 
 sec = time_input * ((2*math.pi)/60)
+min = time_input * ((2*math.pi)/3600)
+hour = time_input * ((2*math.pi)/(3600*12))
 
 #need method to draw markers
 
@@ -39,15 +41,24 @@ while True:
 	y_sec = r*(-math.cos(sec))
 	x_sec = r*(math.sin(sec))
 	
+	y_min = (r*.75)*(-math.cos(min))
+	x_min = (r*.75)*(math.sin(min))
+	
+	y_hour = (r*.5)*(-math.cos(hour))
+	x_hour = (r*.5)*(math.sin(hour))
+	
 	#drawing line
 	pygame.draw.line(display, RED, (center, center), (center+x_sec, center+y_sec), 2)
+	pygame.draw.line(display, BLACK, (center, center), (center+x_min, center+y_min), 2)
+	pygame.draw.line(display, BLACK, (center, center), (center+x_hour, center+y_hour), 2)
 	
 	#update display changes
 	pygame.display.update()
 	
 	#increase by 1/60 of revolution AKA 1 second
 	sec += 2*math.pi/60
-	
+	min += 2*math.pi/3600
+	hour += 2*math.pi/(3600*12)	
 	#time interval between each loop run set to 1 second
 	time.sleep(1)
 	
