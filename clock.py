@@ -6,7 +6,7 @@ import feed_HMS
 from decimal import Decimal
 
 HEIGHT = WIDTH = 400
-DISPLAY = 24
+DISPLAY = 12
 
 pygame.init()
 display = pygame.display.set_mode((HEIGHT,WIDTH),0,32)
@@ -48,13 +48,13 @@ while True:
             #draw the numbers representing hours    
             if x % 5 == 0:
                     if x == 0:
-                            number = font.render("12", 1, BLACK, display)
+                            number = font.render("12", 1, BLACK)
                             if DISPLAY == 24:
-                                    number2 = font.render("24", 1, BLACK, display)
+                                    number2 = font.render("24", 1, BLACK)
                     else:
-                            number = font.render(str(Decimal(x/5)), 1, BLACK, display)
+                            number = font.render(str(Decimal(x/5)), 1, BLACK)
                             if DISPLAY == 24:
-                                    number2 = font.render(str(Decimal((x/5)+12)), 1, BLACK, display)
+                                    number2 = font.render(str(Decimal((x/5)+12)), 1, BLACK)
 
                     display.blit(number, ((center+x_coor) - 5, (center+y_coor) - 10))
                     if DISPLAY == 24:
@@ -79,9 +79,9 @@ while True:
         #Display AM or PM if in 12 hour mode
 	if DISPLAY==12:
                 if time_input < 43200:
-                        side = font.render("AM", 1, BLACK, display)
+                        side = font.render("AM", 1, BLACK)
                 elif time_input >= 43200:
-                        side = font.render("PM", 1, BLACK, display)
+                        side = font.render("PM", 1, BLACK)
 
                 display.blit(side, (center-10,center+25))
 	
