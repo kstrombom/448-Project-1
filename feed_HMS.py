@@ -7,12 +7,14 @@ minute_range = [x for x in range(61)] #[0,1,2,....,60]
 second_range = [x for x in range(61)] #[0,1,2,....,60]
 
 def hour():
-	hour = input("Please enter the hour (0-12): ")
-	hour = int(hour)
-	
+	hour = -1
 	while hour not in hour_range:
-		hour = input("Please enter the hour (0-12)! : ")
-		hour = int(hour)
+		try:
+			hour = input("Please enter the hour (0-12)! : ")
+			hour = int(hour)
+		except:
+			hour = -1
+			print ("User entered a non-numeric argument.")
 	
 	# return hour in the unit of seconds
 	return hour*60*60
@@ -27,22 +29,29 @@ def am_pm():
 	return am_pm	
 
 def minute():
-	minute = input("Please enter the minute(s) (0-60): ")
-	minute = int(minute)
+	
+	minute = -1
 	while minute not in minute_range:
-		minute = input("Please enter the minute (0-60)! : ")
-		minute = int(minute)
+		try:
+			minute = input("Please enter the minute (0-60)! : ")
+			minute = int(minute)
+		except:
+			minute = -1
+			print ("User entered in a non-numeric argument.")
+
 	# return minute in the unit of seconds	
 	return minute*60
 		
 		
 def second():
-	second = input("Please enter the second(s) (0-60): ")
-	second = int(second)
+	second = -1
 	while second not in second_range:
-		second = input("Please enter the second (0-60)! : ")
-		second = int(second)
-		
+		try:
+			second = input("Please enter the second (0-60)! : ")
+			second = int(second)
+		except:
+			second = -1
+			print ("User entered a non-numeric argument.")
 	return second
 	
 def run():
