@@ -6,11 +6,11 @@ import feed_HMS
 from decimal import Decimal
 
 HEIGHT = WIDTH = 400
-DISPLAY = 12
+DISPLAY = 24
 
 pygame.init()
 display = pygame.display.set_mode((HEIGHT,WIDTH),0,32)
-font = pygame.font.Font(None, 20)
+font = pygame.font.Font(None, 25)
 
 #colors
 BLACK =(0,0,0)
@@ -35,7 +35,7 @@ hour = time_input * ((2*math.pi)/(3600*12))
 #need method to draw markers
 
 #infinite loop to run clock
-while True:
+while True:        
 	#clear and fill the display
 	display.fill(WHITE)
 
@@ -48,13 +48,29 @@ while True:
             #draw the numbers representing hours    
             if x % 5 == 0:
                     if x == 0:
-                            number = font.render("12", 1, BLACK)
-                            if DISPLAY == 24:
+                            #indicate that the time is between 0 and 12
+                            if DISPLAY == 24 and time_input < 43200:
+                                    number = font.render("12", 1, BLACK)
+                                    number2 = font.render("24", 1, RED)
+                            #indicate that the time is between 13 and 24
+                            elif DISPLAY == 24 and time_input >= 43200:
+                                    number = font.render("12", 1, RED)
                                     number2 = font.render("24", 1, BLACK)
+                            #assume the user has it on a 12 hour cycle
+                            elif DISPLAY == 12:
+                                    number = font.render("12", 1, BLACK)
                     else:
-                            number = font.render(str(Decimal(x/5)), 1, BLACK)
-                            if DISPLAY == 24:
+                            #indicate that the time is between 0 and 12
+                            if DISPLAY == 24 and time_input < 43200:
+                                    number = font.render(str(Decimal(x/5)), 1, BLACK)
+                                    number2 = font.render(str(Decimal(x/5)+12), 1, RED)
+                            #indicate that the time is between 13 and 24
+                            if DISPLAY == 24 and time_input >= 43200:
+                                    number = font.render(str(Decimal(x/5)), 1, RED)
                                     number2 = font.render(str(Decimal((x/5)+12)), 1, BLACK)
+                            #assume the user has it on a 12 hour cycle
+                            elif DISPLAY == 12:
+                                    number = font.render(str(Decimal(x/5)), 1, BLACK)
 
                     display.blit(number, ((center+x_coor) - 5, (center+y_coor) - 10))
                     if DISPLAY == 24:
@@ -92,6 +108,13 @@ while True:
 	
 	#update display changes
 	pygame.display.update()
+
+        #increment user given number of seconds by 1
+	time_input+=1
+
+        #reset time_input if it reaches the end of the 24 hour period
+	if time_input == 86400:
+                time_input = 0
 	
 	#increase by 1/60 of revolution AKA 1 second
 	sec += 2*math.pi/60
