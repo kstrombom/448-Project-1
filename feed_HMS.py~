@@ -7,14 +7,12 @@ minute_range = [x for x in range(61)] #[0,1,2,....,60]
 second_range = [x for x in range(61)] #[0,1,2,....,60]
 
 def hour():
-	hour = -1
+	hour = input("Please enter the hour (0-12): ")
+	hour = int(hour)
+	
 	while hour not in hour_range:
-		try:
-			hour = input("Please enter the hour (0-12)! : ")
-			hour = int(hour)
-		except:
-			hour = -1
-			print ("User entered a non-numeric argument.")
+		hour = input("Please enter the hour (0-12)! : ")
+		hour = int(hour)
 	
 	# return hour in the unit of seconds
 	return hour*60*60
