@@ -1,14 +1,36 @@
+import pygame, sys
+from pygame.locals import *
 import math
 import time
-from settings import *
+import feed_HMS # our module
 import tick_sound # our mudule
 from decimal import Decimal
 
-DISPLAY = 12
 
+HEIGHT = WIDTH = 400
+DISPLAY = 24
 
-
+pygame.init()
+display = pygame.display.set_mode((HEIGHT,WIDTH),0,32)
 font = pygame.font.Font(None, 25)
+
+#colors
+BLACK =(0,0,0)
+RED = (255,0,0)
+WHITE =(255,255,255)
+BLUE = (0,0,255)
+
+#r = desired radius
+r = HEIGHT/2
+
+radius = r*r
+
+#clock center for vector start positions
+center = HEIGHT/2
+
+sec = time_input * ((2*math.pi)/60)
+min = time_input * ((2*math.pi)/3600)
+hour = time_input * ((2*math.pi)/(3600*12))
 
 #sound, pre-loaded
 # sounds below are open-sourced -- from soundbible.com
@@ -35,8 +57,7 @@ def draw_analog_clock(time_input):
 		sound.play()
 
 	#clear and fill the display
-	
-	#display.fill(WHITE)
+	display.fill(WHITE)
 
         #draw the clock display
 	for x in range(0,60):
@@ -107,6 +128,9 @@ def draw_analog_clock(time_input):
 
 	#update display changes
 	pygame.display.update()
+
+        #increment user given number of seconds by 1
+	time_input+=1
 
         #reset time_input if it reaches the end of the 24 hour period
 	if time_input == 86400:
