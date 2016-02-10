@@ -13,11 +13,12 @@ def sound_menu():
 
 def import_sound(slapping, wooshing, punch):
     choice = -1
-    print("Bouns -- Artificial tick")
+    print("\n[Bouns -- Artificial tick!]")
 
 
     while choice not in sound_range:
         sound_menu()
+        print("\nYou choose: ")
         choice = input()
         int(choice)
 
