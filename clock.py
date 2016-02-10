@@ -2,8 +2,10 @@ import pygame, sys
 from pygame.locals import *
 import math
 import time
-import feed_HMS
+import feed_HMS # our module
+import tick_sound # our mudule
 from decimal import Decimal
+
 
 HEIGHT = WIDTH = 400
 DISPLAY = 24
@@ -32,10 +34,25 @@ sec = time_input * ((2*math.pi)/60)
 min = time_input * ((2*math.pi)/3600)
 hour = time_input * ((2*math.pi)/(3600*12))
 
+#sound, pre-loaded
+# sounds below are open-sourced -- from soundbible.com
+slap = pygame.mixer.Sound('slap.wav')
+woosh = pygame.mixer.Sound('woosh.wav')
+punch = pygame.mixer.Sound('punch.wav')
+
+#choose sound
+sound = None
+sound = tick_sound.import_sound(slap,woosh,punch)
+
+
 #need method to draw markers
 
 #infinite loop to run clock
-while True:        
+while True:
+	#play sound
+	if(sound != None):
+		sound.play()
+
 	#clear and fill the display
 	display.fill(WHITE)
 
@@ -45,7 +62,7 @@ while True:
             y_coor = (r*.9)*(-math.cos(angle))
             x_coor = (r*.9)*(math.sin(angle))
 
-            #draw the numbers representing hours    
+            #draw the numbers representing hours
             if x % 5 == 0:
                     if x == 0:
                             #indicate that the time is between 0 and 12
@@ -74,21 +91,21 @@ while True:
 
                     display.blit(number, ((center+x_coor) - 5, (center+y_coor) - 10))
                     if DISPLAY == 24:
-                            display.blit(number2, (center+(x_coor*.8) - 5, center+(y_coor*.8) - 10)) 
+                            display.blit(number2, (center+(x_coor*.8) - 5, center+(y_coor*.8) - 10))
 
-            #draw the lines between the numbers        
+            #draw the lines between the numbers
             else:
                  pygame.draw.line(display, BLACK, (center+(x_coor*.97),center+(y_coor*.97)), (center+(x_coor*1.03), center+(y_coor*1.03)), 1)
-                 
+
 	#draw markers
 
 	#math function to determine end of vector position
 	y_sec = (r*.75)*(-math.cos(sec))
 	x_sec = (r*.75)*(math.sin(sec))
-	
+
 	y_min = (r*.6)*(-math.cos(min))
 	x_min = (r*.6)*(math.sin(min))
-	
+
 	y_hour = (r*.45)*(-math.cos(hour))
 	x_hour = (r*.45)*(math.sin(hour))
 
@@ -100,12 +117,12 @@ while True:
                         side = font.render("PM", 1, BLACK)
 
                 display.blit(side, (center-10,center+25))
-	
+
 	#drawing line
 	pygame.draw.line(display, RED, (center, center), (center+x_sec, center+y_sec), 2)
 	pygame.draw.line(display, BLUE, (center, center), (center+x_min, center+y_min), 2)
 	pygame.draw.line(display, BLACK, (center, center), (center+x_hour, center+y_hour), 2)
-	
+
 	#update display changes
 	pygame.display.update()
 
@@ -115,14 +132,14 @@ while True:
         #reset time_input if it reaches the end of the 24 hour period
 	if time_input == 86400:
                 time_input = 0
-	
+
 	#increase by 1/60 of revolution AKA 1 second
 	sec += 2*math.pi/60
 	min += 2*math.pi/(3600)
-	hour += 2*math.pi/(3600*12)	
+	hour += 2*math.pi/(3600*12)
 	#time interval between each loop run set to 1 second
 	time.sleep(1)
-	
+
 	#for loop used check quit command from pygame window AKA press the X to quit
 	for event in pygame.event.get():
 		if event.type == QUIT:
