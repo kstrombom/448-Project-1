@@ -2,6 +2,7 @@ import time
 from clock import *
 from feed_HMS import * # our module
 from menu_bar import *
+from tick_sound import *
 
 #input menu() waits for user to input valid time
 #in format 00 00 00 to then return and int
@@ -12,6 +13,13 @@ from menu_bar import *
 #toggle = 1 to draw analog clock
 #toggle = 2 to draw digital clock
 toggle = 0
+
+
+#choice 4 for no sound
+sound_toggle = False
+choice = 4
+
+sound = select_sound_display(choice)
 
 while True:
 
@@ -33,6 +41,17 @@ while True:
 		draw_analog_clock(time_input)
 	elif (toggle == 2):
 		draw_digital_clock(time_input)
+		
+	if (sound_toggle == True):
+		choice = choice - 1
+		if choice == 0:
+			choice = 4
+		sound = select_sound_display(choice)
+		sound_toggle = False
+	
+	#playing sound	
+	if(sound != None):
+		sound.play()
 
 	for event in pygame.event.get():
 		if event.type == QUIT:
@@ -45,6 +64,9 @@ while True:
 				toggle = 2
 			elif event.key == pygame.K_s:
 				toggle = 0
+			elif event.key == pygame.K_w:
+				sound_toggle = True
+				
 
 	time_input += 1
 	time.sleep(1)

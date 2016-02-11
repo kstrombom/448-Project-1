@@ -1,6 +1,6 @@
 import pygame, sys
 from pygame.locals import *
-pygame.init()
+pygame.init())
 HEIGHT = WIDTH = 400
 display = pygame.display.set_mode((HEIGHT,WIDTH),0,32)
 

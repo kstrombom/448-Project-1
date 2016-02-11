@@ -1,7 +1,6 @@
 import math
 import time
 from settings import *
-import tick_sound # our mudule
 from decimal import Decimal
 
 DISPLAY = 12
@@ -9,10 +8,6 @@ DISPLAY = 12
 
 
 font = pygame.font.Font(None, 25)
-
-#choose sound
-sound = None
-sound = tick_sound.import_sound()
 
 
 #need method to draw markers
@@ -24,10 +19,6 @@ def draw_digital_clock(time_input):
 	temp_t = temp_t%3600
 	mins = temp_t/60
 	secs = temp_t%60
-	#play sound
-
-	if(sound != None):
-		sound.play()
 
 	#clear and fill the display
 	#display.fill(WHITE)
@@ -103,9 +94,6 @@ def draw_analog_clock(time_input):
 	min = time_input * ((2*math.pi)/3600)
 	hour = time_input * ((2*math.pi)/(3600*12))
 
-	#play sound
-	if(sound != None):
-		sound.play()
 
 	#clear and fill the display
 
