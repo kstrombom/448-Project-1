@@ -10,15 +10,11 @@ DISPLAY = 12
 
 font = pygame.font.Font(None, 25)
 
-#sound, pre-loaded
-# sounds below are open-sourced -- from soundbible.com
-slap = pygame.mixer.Sound('slap.wav')
-woosh = pygame.mixer.Sound('woosh.wav')
-punch = pygame.mixer.Sound('punch.wav')
+
 
 #choose sound
 sound = None
-sound = tick_sound.import_sound(slap,woosh,punch)
+sound = tick_sound.import_sound()
 
 
 #need method to draw markers
@@ -33,18 +29,18 @@ def draw_digital_clock(time_input):
 	#play sound
 	if(sound != None):
 		sound.play()
-	
+
 	#clear and fill the display
 	#display.fill(WHITE)
 
 	seconds = str(secs)
 	minutes = str(mins)
 	hours = str(hr)
-	
+
 	size = 130
 	font = pygame.font.Font(None, size)
 
-	
+
 	if mins < 10 and secs < 10 and hr >= 10:
 		number = font.render(":"+seconds, 1, BLACK)
 		number2 = font.render(minutes, 1, BLACK)
@@ -99,21 +95,21 @@ def draw_digital_clock(time_input):
 		display.blit(number2, ((center)-(size/2), (center)-(size/2)))
 		display.blit(number3, ((center)-(size*1.5), (center)-(size/2)))
 		display.blit(colon, ((center)-(size/1.5), (center)-(size/2)))
-	
+
 	pygame.display.update()
 
 def draw_analog_clock(time_input):
-	
+
 	sec = time_input * ((2*math.pi)/60)
 	min = time_input * ((2*math.pi)/3600)
-	hour = time_input * ((2*math.pi)/(3600*12))	
-	
+	hour = time_input * ((2*math.pi)/(3600*12))
+
 	#play sound
 	if(sound != None):
 		sound.play()
 
 	#clear and fill the display
-	
+
 	#display.fill(WHITE)
 
         #draw the clock display
