@@ -1,16 +1,16 @@
-import pygame, sys
-from pygame.locals import *
 import time
-import settings # display settings on settings.py
-import feed_HMS # our module
-from menu_bar import * 
 from clock import *
+from feed_HMS import * # our module
+from menu_bar import *
 
-#input_menu()
+#input menu() waits for user to input valid time
+#in format 00 00 00 to then return and int
 
-time_input = feed_HMS.run()
+time_input = input_menu()
 
-#change this value to select clocks
+#time_input = feed_HMS.run()
+
+#change this value to select starting clock
 toggle = 2
 
 while True:

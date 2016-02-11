@@ -1,12 +1,9 @@
 #----------------------------
-#WORK IN PROGRESS CAREFUL
+#WORK IN PROGRESS
 #----------------------------
-import pygame, sys
-from pygame.locals import *
 from settings import *
 import math
-import feed_HMS
-import clock
+from feed_HMS import *
 
 #need method to draw instruction in display
 font = pygame.font.Font(None, 25)
@@ -50,6 +47,10 @@ def input_menu():
 					if len(input_string) < 6:
 						input_string = input_string + str(event.key-48)
 						print input_string
-					#else:
+                                if len(input_string)==6:
+                                        if str_input_check(input_string)[0]:
+                                                return (str_input_check(input_string)[1])
+                                        else:
+                                                input_string = ''
 						#check if input string is valid, else reset it to empty
 						#need feed_HMS to accept time in '000000' string format
