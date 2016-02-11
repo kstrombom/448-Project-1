@@ -37,7 +37,85 @@ sound = None
 
 #need method to draw markers
 
-#infinite loop to run clock
+def draw_digital_clock(time_input):
+	temp_t = time_input
+	hr = temp_t/3600
+	hr = hr/13+ hr%13
+	temp_t = temp_t%3600
+	mins = temp_t/60
+	secs = temp_t%60
+	#play sound
+	if(sound != None):
+		sound.play()
+	
+	#clear and fill the display
+	#display.fill(WHITE)
+
+	seconds = str(secs)
+	minutes = str(mins)
+	hours = str(hr)
+	
+	size = 130
+	font = pygame.font.Font(None, size)
+
+	
+	if mins < 10 and secs < 10 and hr >= 10:
+		number = font.render(":"+seconds, 1, BLACK)
+		number2 = font.render(minutes, 1, BLACK)
+		number3 = font.render(hours, 1, BLACK)
+		colon = font.render(":", 1, BLACK)
+		display.blit(number, ((center)+(size/8), (center)-(size/2)))
+		display.blit(number2, ((center)-(size/2), (center)-(size/2)))
+		display.blit(number3, ((center)-(size*1.5), (center)-(size/2)))
+		display.blit(colon, ((center)-(size/1.5), (center)-(size/2)))
+	elif mins < 10 and secs >= 10 and hr >= 10:
+		number = font.render(":"+seconds, 1, BLACK)
+		number2 = font.render(minutes, 1, BLACK)
+		number3 = font.render(hours, 1, BLACK)
+		colon = font.render(":", 1, BLACK)
+		display.blit(number, ((center)+(size/16), (center)-(size/2)))
+		display.blit(number2, ((center)-(size/2), (center)-(size/2)))
+		display.blit(number3, ((center)-(size*1.5), (center)-(size/2)))
+		display.blit(colon, ((center)-(size/1.5), (center)-(size/2)))
+	elif mins < 10 and secs >= 10 and hr < 10:
+		number = font.render(":"+seconds, 1, BLACK)
+		number2 = font.render(minutes, 1, BLACK)
+		number3 = font.render(hours, 1, BLACK)
+		colon = font.render(":", 1, BLACK)
+		display.blit(number, ((center)+(size/16), (center)-(size/2)))
+		display.blit(number2, ((center)-(size/2), (center)-(size/2)))
+		display.blit(number3, ((center)-(size), (center)-(size/2)))
+		display.blit(colon, ((center)-(size/1.5), (center)-(size/2)))
+	elif mins >= 10 and secs >= 10 and hr < 10:
+		number = font.render(":"+seconds, 1, BLACK)
+		number2 = font.render(minutes, 1, BLACK)
+		number3 = font.render(hours, 1, BLACK)
+		colon = font.render(":", 1, BLACK)
+		display.blit(number, ((center)+(size/2), (center)-(size/2)))
+		display.blit(number2, ((center)-(size/2), (center)-(size/2)))
+		display.blit(number3, ((center)-(size), (center)-(size/2)))
+		display.blit(colon, ((center)-(size/1.5), (center)-(size/2)))
+	elif mins < 10 and secs < 10 and hr < 10:
+		number = font.render(":"+seconds, 1, BLACK)
+		number2 = font.render(minutes, 1, BLACK)
+		number3 = font.render(hours, 1, BLACK)
+		colon = font.render(":", 1, BLACK)
+		display.blit(number, ((center)+(size/16), (center)-(size/2)))
+		display.blit(number2, ((center)-(size/2), (center)-(size/2)))
+		display.blit(number3, ((center)-(size), (center)-(size/2)))
+		display.blit(colon, ((center)-(size/1.5), (center)-(size/2)))
+	elif mins >= 10 and secs >= 10 and hr >= 10:
+		number = font.render(":"+seconds, 1, BLACK)
+		number2 = font.render(minutes, 1, BLACK)
+		number3 = font.render(hours, 1, BLACK)
+		colon = font.render(":", 1, BLACK)
+		display.blit(number, ((center)+(size/2), (center)-(size/2)))
+		display.blit(number2, ((center)-(size/2), (center)-(size/2)))
+		display.blit(number3, ((center)-(size*1.5), (center)-(size/2)))
+		display.blit(colon, ((center)-(size/1.5), (center)-(size/2)))
+	
+	pygame.display.update()
+
 def draw_analog_clock(time_input):
 	
 	sec = time_input * ((2*math.pi)/60)

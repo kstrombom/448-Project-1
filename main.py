@@ -6,11 +6,12 @@ import feed_HMS # our module
 from menu_bar import * 
 from clock import *
 
-input_menu()
+#input_menu()
 
 time_input = feed_HMS.run()
 
-toggle = 1
+#change this value to select clocks
+toggle = 2
 
 while True:
 	
@@ -26,12 +27,16 @@ while True:
 	elif (toggle == 1):
 		draw_analog_clock(time_input)
 	elif toggle == 2:
-		#draw analog
-		print ('toggle = 2')
+		draw_digital_clock(time_input)
 		
 	for event in pygame.event.get():
 		if event.type == QUIT:
 			pygame.quit()
 			sys.exit()
+                elif event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_a:
+                                toggle = 1
+                        elif event.key == pygame.K_d:
+                                toggle = 2
 	time_input += 1
 	time.sleep(1)
