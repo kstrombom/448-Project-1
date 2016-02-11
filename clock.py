@@ -1,39 +1,28 @@
+<<<<<<< HEAD
 import time
 import pygame, sys
 from pygame.locals import *
 import math
 import feed_HMS # our module
+=======
+import math
+import time
+from settings import *
+>>>>>>> DSoliz/master
 import tick_sound # our mudule
 from decimal import Decimal
 
+DISPLAY = 12
 
+<<<<<<< HEAD
 HEIGHT = WIDTH = 400
 DISPLAY = 12
 ANALOG = 0
+=======
+>>>>>>> DSoliz/master
 
-pygame.init()
-display = pygame.display.set_mode((HEIGHT,WIDTH),0,32)
+
 font = pygame.font.Font(None, 25)
-
-#colors
-BLACK =(0,0,0)
-RED = (255,0,0)
-WHITE =(255,255,255)
-BLUE = (0,0,255)
-
-#r = desired radius
-r = HEIGHT/2
-
-radius = r*r
-
-#clock center for vector start positions
-center = HEIGHT/2
-
-time_input = feed_HMS.run()
-
-sec = time_input * ((2*math.pi)/60)
-min = time_input * ((2*math.pi)/3600)
-hour = time_input * ((2*math.pi)/(3600*12))
 
 #sound, pre-loaded
 # sounds below are open-sourced -- from soundbible.com
@@ -49,12 +38,18 @@ sound = None
 #need method to draw markers
 
 #infinite loop to run clock
-while True:
+def draw_analog_clock(time_input):
+	
+	sec = time_input * ((2*math.pi)/60)
+	min = time_input * ((2*math.pi)/3600)
+	hour = time_input * ((2*math.pi)/(3600*12))	
+	
 	#play sound
 	if(sound != None):
 		sound.play()
 
 	#clear and fill the display
+<<<<<<< HEAD
 	display.fill(WHITE)
 	if ANALOG == 0:
                 temp = time_input
@@ -106,6 +101,31 @@ while True:
                                     display.blit(number2, (center+(x_coor*.8) - 5, center+(y_coor*.8) - 10))
 
                     #draw the lines between the numbers
+=======
+	
+	#display.fill(WHITE)
+
+        #draw the clock display
+	for x in range(0,60):
+            angle = x * ((2*math.pi)/60)
+            y_coor = (r*.9)*(-math.cos(angle))
+            x_coor = (r*.9)*(math.sin(angle))
+
+            #draw the numbers representing hours
+            if x % 5 == 0:
+                    if x == 0:
+                            #indicate that the time is between 0 and 12
+                            if DISPLAY == 24 and time_input < 43200:
+                                    number = font.render("12", 1, BLACK)
+                                    number2 = font.render("24", 1, RED)
+                            #indicate that the time is between 13 and 24
+                            elif DISPLAY == 24 and time_input >= 43200:
+                                    number = font.render("12", 1, RED)
+                                    number2 = font.render("24", 1, BLACK)
+                            #assume the user has it on a 12 hour cycle
+                            elif DISPLAY == 12:
+                                    number = font.render("12", 1, BLACK)
+>>>>>>> DSoliz/master
                     else:
                          pygame.draw.line(display, BLACK, (center+(x_coor*.97),center+(y_coor*.97)), (center+(x_coor*1.03), center+(y_coor*1.03)), 1)
 
@@ -138,9 +158,6 @@ while True:
 	#update display changes
 	pygame.display.update()
 
-        #increment user given number of seconds by 1
-	time_input+=1
-
         #reset time_input if it reaches the end of the 24 hour period
 	if time_input == 86400:
                 time_input = 0
@@ -149,11 +166,3 @@ while True:
 	sec += 2*math.pi/60
 	min += 2*math.pi/(3600)
 	hour += 2*math.pi/(3600*12)
-	#time interval between each loop run set to 1 second
-	time.sleep(1)
-
-	#for loop used check quit command from pygame window AKA press the X to quit
-	for event in pygame.event.get():
-		if event.type == QUIT:
-			pygame.quit()
-			sys.exit()
