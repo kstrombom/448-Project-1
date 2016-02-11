@@ -1,6 +1,7 @@
 import math
 import time
 from settings import *
+import tick_sound # our mudule
 from decimal import Decimal
 
 DISPLAY = 12
