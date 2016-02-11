@@ -1,25 +1,10 @@
-<<<<<<< HEAD
-import time
-import pygame, sys
-from pygame.locals import *
-import math
-import feed_HMS # our module
-=======
 import math
 import time
 from settings import *
->>>>>>> DSoliz/master
 import tick_sound # our mudule
 from decimal import Decimal
 
 DISPLAY = 12
-
-<<<<<<< HEAD
-HEIGHT = WIDTH = 400
-DISPLAY = 12
-ANALOG = 0
-=======
->>>>>>> DSoliz/master
 
 
 font = pygame.font.Font(None, 25)
@@ -49,8 +34,6 @@ def draw_analog_clock(time_input):
 		sound.play()
 
 	#clear and fill the display
-<<<<<<< HEAD
-	display.fill(WHITE)
 	if ANALOG == 0:
                 temp = time_input
                 seconds = temp % 60
@@ -101,7 +84,7 @@ def draw_analog_clock(time_input):
                                     display.blit(number2, (center+(x_coor*.8) - 5, center+(y_coor*.8) - 10))
 
                     #draw the lines between the numbers
-=======
+
 	
 	#display.fill(WHITE)
 
@@ -125,7 +108,7 @@ def draw_analog_clock(time_input):
                             #assume the user has it on a 12 hour cycle
                             elif DISPLAY == 12:
                                     number = font.render("12", 1, BLACK)
->>>>>>> DSoliz/master
+
                     else:
                          pygame.draw.line(display, BLACK, (center+(x_coor*.97),center+(y_coor*.97)), (center+(x_coor*1.03), center+(y_coor*1.03)), 1)
 

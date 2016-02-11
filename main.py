@@ -6,7 +6,7 @@ import feed_HMS # our module
 from menu_bar import * 
 from clock import *
 
-input_menu()
+
 
 time_input = feed_HMS.run()
 
