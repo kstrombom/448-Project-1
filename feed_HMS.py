@@ -7,8 +7,8 @@ def str_input_check(string):
         is_acceptable = False
         time_in_sec = 0
         input_hr = int(string[0]+string[1])
-        input_min = int(string[2]+string[3])
-        input_sec = int(string[4]+string[5])
+        input_min = int(string[3]+string[4])
+        input_sec = int(string[6]+string[7])
         if input_hr>12 or input_min>59 or input_sec>59:
                 is_acceptable = False
         else:

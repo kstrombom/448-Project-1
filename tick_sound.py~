@@ -36,22 +36,15 @@ def import_sound():
             print ("User entered a non-numeric argument.")
 
 def select_sound_display(choice):
-    print("\n[Bouns -- Artificial tick!]")
-
-    while choice not in [1,2,3,4]:
-        try:
-            if choice == 1:
-            	return slap
-            elif choice == 2:
-               return woosh
-            elif choice == 3:
-               return punch
-            elif choice == 4:
-               print("OK. NO SOUND.")
-            else:
-               choice = -1
-               print("Please enter a valid option.")
-
-        except:
-            choice = -1
-            print ("User entered a non-numeric argument.")
+	
+	if choice == 1:
+		print("Slap Sound")
+		return slap
+	elif choice == 2:
+		print("Woosh Sound")
+		return woosh
+	elif choice == 3:
+		print("Punch Sound")
+		return punch
+	elif choice == 4:
+		print("OK. NO SOUND.")
