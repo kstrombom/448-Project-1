@@ -10,8 +10,6 @@ DISPLAY = 12
 
 font = pygame.font.Font(None, 25)
 
-
-
 #choose sound
 sound = None
 sound = tick_sound.import_sound()
@@ -27,6 +25,7 @@ def draw_digital_clock(time_input):
 	mins = temp_t/60
 	secs = temp_t%60
 	#play sound
+
 	if(sound != None):
 		sound.play()
 

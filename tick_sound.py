@@ -1,32 +1,23 @@
 import pygame.mixer
 
-
 pygame.init()
 
-
-sound_range = [1,2,3,4]
-
-
-#sound, pre-loaded
+# sound, pre-loaded
 # sounds below are open-sourced -- from soundbible.com
 slap = pygame.mixer.Sound('slap.wav')
 woosh = pygame.mixer.Sound('woosh.wav')
 punch = pygame.mixer.Sound('punch.wav')
 
 def sound_menu():
-    print("Please enter your tick: \n1)Slap tick\n2)Woosh tick\n3)Punch tick\n4)No tick")
-
+    print("Please enter your tick: \n1)Slap tick\n2)Woosh tick\n3)Punch tick\n4)No tick\nYou choose: ")
 
 def import_sound():
     choice = -1
     print("\n[Bouns -- Artificial tick!]")
 
-
-    while choice not in sound_range:
+    while choice not in [1,2,3,4]:
         sound_menu()
-        print("\nYou choose: ")
-        choice = input()
-        int(choice)
+        choice = int(input())
 
         try:
             if choice == 1:
