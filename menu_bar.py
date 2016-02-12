@@ -8,7 +8,7 @@ from feed_HMS import *
 
 #need method to draw instruction in display
 #font = pygame.font.Font("Anita semi square.ttf", 25)
-font = pygame.font.Font("Anita semi square.ttf", 23)
+font = pygame.font.Font("Anita semi square.ttf", 20)
 number = font.render("12", 1, BLACK)
 
 def runMenu():
@@ -61,7 +61,8 @@ def input_menu():
 	i = 0
 	input_string = list("00:00:00")
 	while True:
-		draw_string("Input Time:",100,6*45 + 30)
+		draw_string("Input Time (00:00:00-23:59:59):",10,6*45 + 30)
+		draw_string(''.join(input_string),8,7*45 + 30)
 		for event in pygame.event.get():
 			if event.type == pygame.KEYDOWN:
 				if event.key in (pygame.K_0, pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9 ):
@@ -75,20 +76,21 @@ def input_menu():
 							i += 1
 						display.fill(PALE_BLUE)
 						printMenu_display()
-						draw_string(''.join(input_string),0,7*45 + 30)
+						draw_string(''.join(input_string),8,7*45 + 30)
 						print (input_string)
-                                if (i == 8):
-                                        if str_input_check(input_string)[0]:
-						draw_string("Time Set Successfully!",100,7*45 + 30)
-						i = 0
-						return (str_input_check(input_string)[1])
-                                        else:
-						draw_string("Invalid input try again!",WIDTH/2,7*45 + 30)
-						time.sleep(1.5)
-						i = 0
-						display.fill(PALE_BLUE)
-						printMenu_display()
-                                                input_string = list("00:00:00")
+						if i == 8:
+							if str_input_check(input_string)[0]:
+								draw_string("Time Set Successfully!",130,7*45 + 30)
+								i = 0
+								time.sleep(0.2)
+								return (str_input_check(input_string)[1])
+							else:
+								draw_string("Invalid input try again!",WIDTH/2,7*45 + 30)
+								time.sleep(1.5)
+								i = 0
+								display.fill(PALE_BLUE)
+								printMenu_display()
+								input_string = list("00:00:00")
 			if event.type == QUIT:
 				pygame.quit()
 				sys.exit()

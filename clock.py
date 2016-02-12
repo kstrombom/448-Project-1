@@ -3,7 +3,7 @@ import time
 from settings import *
 from decimal import Decimal
 
-DISPLAY = 24
+DISPLAY = 12
 
 #font = pygame.font.Font(None, 25)
 font = pygame.font.Font("Vonique_64_Bold.ttf", 30)
@@ -14,10 +14,10 @@ font = pygame.font.Font("Vonique_64_Bold.ttf", 30)
 def draw_digital_clock(time_input):
 	temp_t = time_input
 	hr = temp_t/3600
-	
+
         if DISPLAY == 12:
             hr = hr/13+ hr%13
-            
+
 	temp_t = temp_t%3600
 	mins = temp_t/60
 	secs = temp_t%60
@@ -32,21 +32,21 @@ def draw_digital_clock(time_input):
 	size = 130
 	font = pygame.font.Font("Open 24 Display St.ttf", 80)
 	font2 = pygame.font.Font("Open 24 Display St.ttf", 40)
-	
+
 	if secs < 10:
                 number = font.render(":0"+seconds, 1, WHITE)
         else:
                 number = font.render(":"+seconds, 1, WHITE)
-                
+
         if mins < 10:
                 number2 = font.render(":0"+minutes, 1, WHITE)
         else:
                 number2 = font.render(":"+minutes, 1, WHITE)
-          
+
         if DISPLAY == 12:
             if hr == 0:
                 number3 = font.render("12", 1, WHITE)
-                display.blit(number3, ((center)-(size), (center)-(size/2)))            
+                display.blit(number3, ((center)-(size), (center)-(size/2)))
             elif hr < 10:
                 number3 = font.render(hours, 1, WHITE)
                 display.blit(number3, ((center)-(size/1.25), (center)-(size/2)))
@@ -60,14 +60,14 @@ def draw_digital_clock(time_input):
                     elif DISPLAY == 24 and hr > 12:
                         number3 = font.render(temp, 1, WHITE)
                         display.blit(number3, ((center)-(size), (center)-(size/2)))
-                        
+
             if time_input<43200:
 		period = font2.render("AM", 1, WHITE)
-		display.blit(period, ((center)+(size), (center)-(size/2))) 
+		display.blit(period, ((center)+(size), (center)-(size/2)))
             else:
                 period = font2.render("PM", 1, WHITE)
-		display.blit(period, ((center)+(size), (center)-(size/7))) 
-            
+		display.blit(period, ((center)+(size), (center)-(size/7)))
+
         elif DISPLAY == 24:
             if hr < 10:
                     number3 = font.render(hours, 1, WHITE)
@@ -79,13 +79,13 @@ def draw_digital_clock(time_input):
                     elif hr > 12:
                         number3 = font.render(hours, 1, WHITE)
                         display.blit(number3, ((center)-(size), (center)-(size/2)))
-                
-                
+
+
         display.blit(number, ((center)+(size/5), (center)-(size/2)))
 	display.blit(number2, ((center)-(size/2), (center)-(size/2)))
-	
+
 	pygame.display.update()
-	
+
 
 def draw_analog_clock(time_input):
 
@@ -176,10 +176,10 @@ def draw_analog_clock(time_input):
 	sec += 2*math.pi/60
 	min += 2*math.pi/(3600)
 	hour += 2*math.pi/(3600*12)
-	
+
 def changeDisplay():
         global DISPLAY
-        
+
         if DISPLAY == 12:
                 DISPLAY = 24
         elif DISPLAY == 24:
