@@ -1,10 +1,22 @@
-#setup time!
-#
-#
-
 hour_range = [x for x in range(13)] #[0,1,2,....,12]
 minute_range = [x for x in range(61)] #[0,1,2,....,60]
 second_range = [x for x in range(61)] #[0,1,2,....,60]
+
+#needs extreme case testing 
+def str_input_check(string):
+        is_acceptable = False
+        time_in_sec = 0
+        input_hr = int(string[0]+string[1])
+        input_min = int(string[3]+string[4])
+        input_sec = int(string[6]+string[7])
+        if input_hr>12 or input_min>59 or input_sec>59:
+                is_acceptable = False
+        else:
+                is_acceptable = True
+                time_in_sec =  input_hr*3600 + input_min *60 + input_sec
+                #print time_in_sec
+        
+        return (is_acceptable, time_in_sec)
 
 def hour():
 	hour = -1
