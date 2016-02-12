@@ -68,6 +68,8 @@ while True:
 				toggle = 0
 			elif event.key == pygame.K_w:
 				sound_toggle = True
+			elif event.key == pygame.K_SPACE:
+                                changeDisplay()
 				
 
 	time_input += 1
