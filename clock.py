@@ -3,7 +3,7 @@ import time
 from settings import *
 from decimal import Decimal
 
-DISPLAY = 12
+DISPLAY = 24
 
 #font = pygame.font.Font(None, 25)
 font = pygame.font.Font("Vonique_64_Bold.ttf", 30)
@@ -14,7 +14,10 @@ font = pygame.font.Font("Vonique_64_Bold.ttf", 30)
 def draw_digital_clock(time_input):
 	temp_t = time_input
 	hr = temp_t/3600
-	hr = hr/13+ hr%13
+	
+        if DISPLAY == 12:
+            hr = hr/13+ hr%13
+            
 	temp_t = temp_t%3600
 	mins = temp_t/60
 	secs = temp_t%60
@@ -28,10 +31,10 @@ def draw_digital_clock(time_input):
 
 	size = 130
 	font = pygame.font.Font("Open 24 Display St.ttf", 80)
+	font2 = pygame.font.Font("Open 24 Display St.ttf", 40)
 	
 	if secs < 10:
                 number = font.render(":0"+seconds, 1, WHITE)
-                print "Test"
         else:
                 number = font.render(":"+seconds, 1, WHITE)
                 
@@ -39,13 +42,41 @@ def draw_digital_clock(time_input):
                 number2 = font.render(":0"+minutes, 1, WHITE)
         else:
                 number2 = font.render(":"+minutes, 1, WHITE)
-                
-        if hr < 10:
+          
+        if DISPLAY == 12:
+            if hr < 10:
                 number3 = font.render(hours, 1, WHITE)
                 display.blit(number3, ((center)-(size/1.25), (center)-(size/2)))
-        else:
-                number3 = font.render(hours, 1, WHITE)
-                display.blit(number3, ((center)-(size), (center)-(size/2)))
+            else:
+                    if hr == 10 or hr == 11 or hr == 12:
+                        number3 = font.render(hours, 1, WHITE)
+                        display.blit(number3, ((center)-(size), (center)-(size/2)))
+                    if DISPLAY == 12 and hr > 12:
+                        number3 = font.render(hours, 1, WHITE)
+                        display.blit(number3, ((center)-(size), (center)-(size/2)))
+                    elif DISPLAY == 24 and hr > 12:
+                        number3 = font.render(temp, 1, WHITE)
+                        display.blit(number3, ((center)-(size), (center)-(size/2)))
+                        
+            if time_input<43200:
+		period = font2.render("AM", 1, WHITE)
+		display.blit(period, ((center)+(size), (center)-(size/2))) 
+            else:
+                period = font2.render("PM", 1, WHITE)
+		display.blit(period, ((center)+(size), (center)-(size/7))) 
+            
+        elif DISPLAY == 24:
+            if hr < 10:
+                    number3 = font.render(hours, 1, WHITE)
+                    display.blit(number3, ((center)-(size/1.25), (center)-(size/2)))
+            else:
+                    if hr == 10 or hr == 11 or hr == 12:
+                        number3 = font.render(hours, 1, WHITE)
+                        display.blit(number3, ((center)-(size), (center)-(size/2)))
+                    elif hr > 12:
+                        number3 = font.render(hours, 1, WHITE)
+                        display.blit(number3, ((center)-(size), (center)-(size/2)))
+                
                 
         display.blit(number, ((center)+(size/5), (center)-(size/2)))
 	display.blit(number2, ((center)-(size/2), (center)-(size/2)))
