@@ -82,11 +82,11 @@ def input_menu():
 							if str_input_check(input_string)[0]:
 								draw_string("Time Set Successfully!",130,7*45 + 30)
 								i = 0
-								time.sleep(0.2)
+								time.sleep(0.9)
 								return (str_input_check(input_string)[1])
 							else:
 								draw_string("Invalid input try again!",130,7*45 + 30)
-								time.sleep(1.5)
+								time.sleep(1.7)
 								i = 0
 								display.fill(PALE_BLUE)
 								printMenu_display()

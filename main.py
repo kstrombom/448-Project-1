@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import time
+import math
 from clock import *
 from feed_HMS import * # our module
 from menu_bar import *
@@ -38,9 +39,9 @@ while True:
 			print ("Insert time using number keys on the pygame window (format hr 00 min 00 sec 00):")
 			time_input = input_menu()
 	elif (toggle == 1):
-		draw_analog_clock(time_input)
+		draw_analog_clock(int(time_input))
 	elif (toggle == 2):
-		draw_digital_clock(time_input)
+		draw_digital_clock(int(time_input))
 
 	if (sound_toggle == True):
 		choice = choice - 1
@@ -70,5 +71,5 @@ while True:
                         elif event.key == pygame.K_SPACE:
                                 changeDisplay()
 
-	time_input += 1
-	time.sleep(1)
+	time_input += 0.1
+	time.sleep(0.1)
