@@ -1,0 +1,2 @@
+-Need to fix some bugs in the digital clock
+-Need to make spacebar toggle 24/12 hour mode

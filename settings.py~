@@ -1,10 +1,14 @@
 import pygame, sys
 from pygame.locals import *
-pygame.init())
+pygame.init()
 HEIGHT = WIDTH = 400
 display = pygame.display.set_mode((HEIGHT,WIDTH),0,32)
+icon = pygame.image.load("clock.png")
+pygame.display.set_icon(icon)
 
-time_input = 69
+pygame.display.set_caption("Best Clock")
+
+time_input = 0
 
 #r = desired radius
 r = HEIGHT/2

@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import time
 from clock import *
 from feed_HMS import * # our module

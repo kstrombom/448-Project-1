@@ -1,8 +1,10 @@
+#!/usr/bin/python
+
 import time
 from clock import *
 from feed_HMS import * # our module
 from menu_bar import *
-import tick_sound
+from tick_sound import *
 
 #input menu() waits for user to input valid time
 #in format 00 00 00 to then return and int

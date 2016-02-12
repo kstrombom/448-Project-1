@@ -36,13 +36,15 @@ def import_sound():
             print ("User entered a non-numeric argument.")
 
 def select_sound_display(choice):
-	print("\n[Bouns -- Artificial tick!]")
 	
 	if choice == 1:
+		print("Slap Sound")
 		return slap
 	elif choice == 2:
+		print("Woosh Sound")
 		return woosh
 	elif choice == 3:
+		print("Punch Sound")
 		return punch
 	elif choice == 4:
 		print("OK. NO SOUND.")
