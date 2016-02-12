@@ -68,6 +68,8 @@ def input_menu():
 					if i <= 8:
 						if input_string[i] == ':':
 							i += 1
+							input_string[i] = str(event.key-48)
+							i += 1
 						else:
 							input_string[i] = str(event.key-48)
 							i += 1
@@ -77,7 +79,7 @@ def input_menu():
 						print (input_string)
                                 if (i == 8):
                                         if str_input_check(input_string)[0]:
-						draw_string("Time Set Succesfully!",100,7*45 + 30)
+						draw_string("Time Set Successfully!",100,7*45 + 30)
 						i = 0
 						return (str_input_check(input_string)[1])
                                         else:
