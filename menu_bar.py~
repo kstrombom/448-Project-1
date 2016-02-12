@@ -3,7 +3,6 @@
 #----------------------------
 from settings import *
 import math
-import time
 from feed_HMS import *
 
 #need method to draw instruction in display
@@ -49,44 +48,31 @@ def printMenu_display():
 		display.blit(message, (0, i*45 + 30))
 	pygame.display.update()
 	
-def draw_string(string_in,x,y):
+def draw_input_time(string_in):
 	time_str = font.render(string_in, 1, BLACK)	
-	display.blit(time_str, (x, y))
+	display.blit(time_str, (0, 6*45 + 30))
 	pygame.display.update()
 	
 
 #method to accept numeric keyboard input on pygame window
 def input_menu():
-	i = 0
-	input_string = list("00:00:00")
+	input_string = ''
 	while True:
-		draw_string("Input Time:",100,6*45 + 30)
 		for event in pygame.event.get():
-			if event.type == pygame.KEYDOWN:
-				if event.key in (pygame.K_0, pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9 ):
-					if i <= 8:
-						if input_string[i] == ':':
-							i += 1
-						else:
-							input_string[i] = str(event.key-48)
-							i += 1
-						display.fill(WHITE)
-						printMenu_display()
-						draw_string(''.join(input_string),0,7*45 + 30)
-						print input_string
-                                if i == 8:
-                                        if str_input_check(input_string)[0]:
-						draw_string("Time Set Succesfully!",100,7*45 + 30)
-						i = 0
-						return (str_input_check(input_string)[1])
-                                        else:
-						draw_string("Invalid input try again!",WIDTH/2,7*45 + 30)
-						time.sleep(1.5)
-						i = 0
-						display.fill(WHITE)
-						printMenu_display()
-                                                input_string = list("00:00:00")
 			if event.type == QUIT:
 				pygame.quit()
 				sys.exit()
-	time.sleep(0.1)
+			if event.type == pygame.KEYDOWN:
+				#this gets input from pygame window and adds it to a string
+				if event.key in (pygame.K_0, pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9 ):
+					if len(input_string) < 6:
+						input_string = input_string + str(event.key-48)
+						draw_input_time(input_string)
+						print input_string
+                                if len(input_string)==6:
+                                        if str_input_check(input_string)[0]:
+                                                return (str_input_check(input_string)[1])
+                                        else:
+                                                input_string = ''
+						#check if input string is valid, else reset it to empty
+						#need feed_HMS to accept time in '000000' string format
