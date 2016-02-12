@@ -7,7 +7,8 @@ import time
 from feed_HMS import *
 
 #need method to draw instruction in display
-font = pygame.font.Font(None, 25)
+#font = pygame.font.Font("Anita semi square.ttf", 25)
+font = pygame.font.Font("Anita semi square.ttf", 23)
 number = font.render("12", 1, BLACK)
 
 def runMenu():
@@ -28,32 +29,32 @@ def runMenu():
 				elif event.key == pygame.K_s:
 					out_toggle = 0
 					return out_toggle
-					print "input time"
+					print ("input time")
 				elif event.key == pygame.K_m:
 					printMenu_console()
 				elif event.key == pygame.K_SPACE:
 					print("need method to change to 24 hour mode")
 def printMenu_console():
-	print "Press a for analog clock display"
-	print "Press d for digital clock display"
-	print "press space to change between 24 or 12 hour mode"
-	print "Press s to set time"
-	print "Press m for menu options"
-	print "Press w to toggle through sounds"
+	print ("Press a for analog clock display")
+	print ("Press d for digital clock display")
+	print ("press space to change between 24 or 12 hour mode")
+	print ("Press s to set time")
+	print ("Press m for menu options")
+	print ("Press w to toggle through sounds")
 
 def printMenu_display():
-	display.fill(WHITE)
-	my_list = ("Press a for analog clock display" , "Press d for digital clock display" , "Press space to select 24/12 hour mode" , "Press s to set time" , "Press m for menu options","Press w to toggle through sounds")
+	display.fill(PALE_BLUE)
+	my_list = ("A for analog clock" , "D for digital clock" , "SPACE for 24/12 hr mode" , "S to set time" , "M for menu options","W to select tick sound")
 	for i in range(len(my_list)):
-		message = font.render(my_list[i], 1, BLACK)	
-		display.blit(message, (0, i*45 + 30))
+		message = font.render(my_list[i], 1, WHITE)
+		display.blit(message, (8, i*45 + 30))
 	pygame.display.update()
-	
+
 def draw_string(string_in,x,y):
-	time_str = font.render(string_in, 1, BLACK)	
+	time_str = font.render(string_in, 1, WHITE)
 	display.blit(time_str, (x, y))
 	pygame.display.update()
-	
+
 
 #method to accept numeric keyboard input on pygame window
 def input_menu():
@@ -70,11 +71,11 @@ def input_menu():
 						else:
 							input_string[i] = str(event.key-48)
 							i += 1
-						display.fill(WHITE)
+						display.fill(PALE_BLUE)
 						printMenu_display()
 						draw_string(''.join(input_string),0,7*45 + 30)
-						print input_string
-                                if i == 8:
+						print (input_string)
+                                if (i == 8):
                                         if str_input_check(input_string)[0]:
 						draw_string("Time Set Succesfully!",100,7*45 + 30)
 						i = 0
@@ -83,7 +84,7 @@ def input_menu():
 						draw_string("Invalid input try again!",WIDTH/2,7*45 + 30)
 						time.sleep(1.5)
 						i = 0
-						display.fill(WHITE)
+						display.fill(PALE_BLUE)
 						printMenu_display()
                                                 input_string = list("00:00:00")
 			if event.type == QUIT:

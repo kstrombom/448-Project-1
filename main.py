@@ -24,13 +24,11 @@ choice = 4
 sound = select_sound_display(choice)
 
 while True:
-
 	#displaying background
-	bg = pygame.image.load("background.jpg")
+	bg = pygame.image.load("material.png")
 	display.blit(bg, (0, 0))
 	#uncoment to display white background
 	#display.fill(WHITE)
-
 	if time_input > 86400:
 		time_input = 0
 
@@ -43,18 +41,17 @@ while True:
 		draw_analog_clock(time_input)
 	elif (toggle == 2):
 		draw_digital_clock(time_input)
-		
+
 	if (sound_toggle == True):
 		choice = choice - 1
 		if choice == 0:
 			choice = 4
 		sound = select_sound_display(choice)
 		sound_toggle = False
-	
-	#playing sound	
+
+	#playing sound
 	if(sound != None):
 		sound.play()
-
 	for event in pygame.event.get():
 		if event.type == QUIT:
 			pygame.quit()
@@ -68,7 +65,6 @@ while True:
 				toggle = 0
 			elif event.key == pygame.K_w:
 				sound_toggle = True
-				
 
 	time_input += 1
 	time.sleep(1)
