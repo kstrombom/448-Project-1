@@ -3,7 +3,8 @@ import time
 from settings import *
 from decimal import Decimal
 
-DISPLAY = 24
+DISPLAY = 12
+
 
 
 font = pygame.font.Font(None, 25)
@@ -176,11 +177,3 @@ def draw_analog_clock(time_input):
 	sec += 2*math.pi/60
 	min += 2*math.pi/(3600)
 	hour += 2*math.pi/(3600*12)
-
-def changeDisplay():
-        global DISPLAY
-        
-        if DISPLAY == 12:
-                DISPLAY = 24
-        elif DISPLAY == 24:
-                DISPLAY = 12
