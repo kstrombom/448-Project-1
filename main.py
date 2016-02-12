@@ -29,7 +29,7 @@ while True:
 	display.blit(bg, (0, 0))
 	#uncoment to display white background
 	#display.fill(WHITE)
-	if time_input > 86400:
+	if time_input > 86399:
 		time_input = 0
 
 	if (toggle == 0):

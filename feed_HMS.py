@@ -1,6 +1,6 @@
-hour_range = [x for x in range(13)] #[0,1,2,....,12]
-minute_range = [x for x in range(61)] #[0,1,2,....,60]
-second_range = [x for x in range(61)] #[0,1,2,....,60]
+hour_range = [x+1 for x in range(13)] #[1,2,....,12]
+minute_range = [x for x in range(60)] #[0,1,2,....,59]
+second_range = [x for x in range(60)] #[0,1,2,....,59]
 
 #needs extreme case testing 
 def str_input_check(string):
@@ -9,7 +9,7 @@ def str_input_check(string):
         input_hr = int(string[0]+string[1])
         input_min = int(string[3]+string[4])
         input_sec = int(string[6]+string[7])
-        if input_hr>12 or input_min>59 or input_sec>59:
+        if input_hr>23 or input_min>59 or input_sec>59:
                 is_acceptable = False
         else:
                 is_acceptable = True

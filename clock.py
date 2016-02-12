@@ -44,7 +44,10 @@ def draw_digital_clock(time_input):
                 number2 = font.render(":"+minutes, 1, WHITE)
           
         if DISPLAY == 12:
-            if hr < 10:
+            if hr == 0:
+                number3 = font.render("12", 1, WHITE)
+                display.blit(number3, ((center)-(size), (center)-(size/2)))            
+            elif hr < 10:
                 number3 = font.render(hours, 1, WHITE)
                 display.blit(number3, ((center)-(size/1.25), (center)-(size/2)))
             else:
