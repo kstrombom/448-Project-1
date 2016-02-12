@@ -85,7 +85,7 @@ def input_menu():
 								time.sleep(0.2)
 								return (str_input_check(input_string)[1])
 							else:
-								draw_string("Invalid input try again!",WIDTH/2,7*45 + 30)
+								draw_string("Invalid input try again!",130,7*45 + 30)
 								time.sleep(1.5)
 								i = 0
 								display.fill(PALE_BLUE)
