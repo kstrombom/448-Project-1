@@ -33,7 +33,7 @@ while True:
 		time_input = 0
 
 	if (toggle == 0):
-		toggle = runMenu()
+                toggle = runMenu()
 		if toggle == 0:
 			print ("Insert time using number keys on the pygame window (format hr 00 min 00 sec 00):")
 			time_input = input_menu()
@@ -65,6 +65,10 @@ while True:
 				toggle = 0
 			elif event.key == pygame.K_w:
 				sound_toggle = True
+                        elif event.key == pygame.K_m:
+                                toggle = runMenu()
+                        elif event.key == pygame.K_SPACE:
+                                changeDisplay()
 
 	time_input += 1
 	time.sleep(1)
