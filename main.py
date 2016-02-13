@@ -11,7 +11,7 @@ from tick_sound import *
 #in format 00 00 00 to then return and int
 
 #time_input = feed_HMS.run()
-
+sound_clock_tracker = 0
 #toggle = 0 to start menu
 #toggle = 1 to draw analog clock
 #toggle = 2 to draw digital clock
@@ -30,8 +30,11 @@ while True:
 	display.blit(bg, (0, 0))
 	#uncoment to display white background
 	#display.fill(WHITE)
+
+	#reset tracking varaibles when time hits 24:00:00
 	if time_input > 86399:
 		time_input = 0
+		sound_clock_tracker = 0
 
 	if (toggle == 0):
                 toggle = runMenu()
@@ -51,7 +54,7 @@ while True:
 		sound_toggle = False
 
 	#playing sound
-	if(sound != None):
+	if(sound != None) and (sound_clock_tracker%10 == 0):
 		sound.play()
 	for event in pygame.event.get():
 		if event.type == QUIT:
@@ -66,10 +69,11 @@ while True:
 				toggle = 0
 			elif event.key == pygame.K_w:
 				sound_toggle = True
-                        elif event.key == pygame.K_m:
-                                toggle = runMenu()
-                        elif event.key == pygame.K_SPACE:
-                                changeDisplay()
-
+			elif event.key == pygame.K_m:
+				toggle = runMenu()
+			elif event.key == pygame.K_SPACE:
+				changeDisplay()
+	#increments and loop sleep
+	sound_clock_tracker += 1
 	time_input += 0.1
 	time.sleep(0.1)
