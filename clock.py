@@ -1,3 +1,10 @@
+"""
+@file: clock.py
+@author: Diego Soliz, Shane Chu, Michael Bechtel, Connor Welsh, Dustin Wendt
+@date: 2016.02.14
+@brief: Clock class. Used to draw analog or digital clocks in pygame window.
+"""
+
 import math
 import time
 from settings import *

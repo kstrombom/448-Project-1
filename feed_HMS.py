@@ -1,3 +1,10 @@
+"""
+@file: feed_HMS.py
+@author: Diego Soliz, Shane Chu, Michael Bechtel, Connor Welsh, Dustin Wendt
+@date: 2016.02.14
+@brief: Feed_HMS class. Used get input from the user and handle exceptions.
+"""
+
 hour_range = [x+1 for x in range(13)] #[1,2,....,12]
 minute_range = [x for x in range(60)] #[0,1,2,....,59]
 second_range = [x for x in range(60)] #[0,1,2,....,59]

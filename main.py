@@ -1,3 +1,10 @@
+"""
+@file: main.py
+@author: Diego Soliz, Shane Chu, Michael Bechtel, Connor Welsh, Dustin Wendt
+@date: 2016.02.14
+@brief: Main class. Used to give user program options and change the program accordingly.
+"""
+
 #!/usr/bin/python
 
 import time
