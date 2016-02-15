@@ -36,13 +36,16 @@ while True:
 		time_input = 0
 		sound_clock_tracker = 0
 
+        #show menu
 	if (toggle == 0):
                 toggle = runMenu()
 		if toggle == 0:
 			print ("Insert time using number keys on the pygame window (format hr 00 min 00 sec 00):")
 			time_input = input_menu()
+        #draw analog clock
 	elif (toggle == 1):
 		draw_analog_clock(int(time_input))
+        #draw digial clock
 	elif (toggle == 2):
 		draw_digital_clock(int(time_input))
 

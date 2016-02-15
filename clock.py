@@ -12,48 +12,71 @@ font = pygame.font.Font("Vonique_64_Bold.ttf", 30)
 #need method to draw markers
 
 def draw_digital_clock(time_input):
+        #create clone of total seconds
 	temp_t = time_input
+
+	#calculate the hour
 	hr = temp_t/3600
 
+        #adjust the hour if in 12 hour mode
         if DISPLAY == 12:
             hr = hr/13+ hr%13
 
+        #recalculate temp variable
 	temp_t = temp_t%3600
+
+	#calculate the minutes and seconds
 	mins = temp_t/60
 	secs = temp_t%60
 
 	#clear and fill the display
 	#display.fill(WHITE)
 
+        #create strings used for rendering
 	seconds = str(secs)
 	minutes = str(mins)
 	hours = str(hr)
 
 	size = 130
+
+	#used for number display
 	font = pygame.font.Font("Open 24 Display St.ttf", 80)
+
+	#used for AM/PM display if in 12 hour mode
 	font2 = pygame.font.Font("Open 24 Display St.ttf", 40)
 
+        #determine if number of seconds is single digit
 	if secs < 10:
+                #render seconds with an additional 0
                 number = font.render(":0"+seconds, 1, WHITE)
         else:
+                #render seconds normally
                 number = font.render(":"+seconds, 1, WHITE)
 
+        #determine if number of minutes is single digit
         if mins < 10:
+                #render minutes with an additional 0
                 number2 = font.render(":0"+minutes, 1, WHITE)
         else:
+                #render minutes normally
                 number2 = font.render(":"+minutes, 1, WHITE)
 
+        #determine with mode the clock is in
         if DISPLAY == 12:
             if hr == 0:
+                #change the 0 hour mark to 12 for 12 hour mode
                 number3 = font.render("12", 1, WHITE)
                 display.blit(number3, ((center)-(size), (center)-(size/2)))
             elif hr < 10:
+                #render hours normally but display then more to the right than normal
                 number3 = font.render(hours, 1, WHITE)
                 display.blit(number3, ((center)-(size/1.25), (center)-(size/2)))
             else:
+                    #display remaining hours that aren't accounted for above
                     if hr == 10 or hr == 11 or hr == 12:
                         number3 = font.render(hours, 1, WHITE)
                         display.blit(number3, ((center)-(size), (center)-(size/2)))
+                    #display adjusted hour variable so that hours above 12 don't get displayed
                     if DISPLAY == 12 and hr > 12:
                         number3 = font.render(hours, 1, WHITE)
                         display.blit(number3, ((center)-(size), (center)-(size/2)))
@@ -62,17 +85,21 @@ def draw_digital_clock(time_input):
                         display.blit(number3, ((center)-(size), (center)-(size/2)))
 
             if time_input<43200:
+                #print AM if total seconds is less than 12 hours
 		period = font2.render("AM", 1, WHITE)
 		display.blit(period, ((center)+(size), (center)-(size/2)))
             else:
+                #print PM if total seconds is greater than 12 hours
                 period = font2.render("PM", 1, WHITE)
 		display.blit(period, ((center)+(size), (center)-(size/7)))
 
         elif DISPLAY == 24:
             if hr < 10:
+                    #print hours more to the right if single digit
                     number3 = font.render(hours, 1, WHITE)
                     display.blit(number3, ((center)-(size/1.25), (center)-(size/2)))
             else:
+                    #print hours not accounted for
                     if hr == 10 or hr == 11 or hr == 12:
                         number3 = font.render(hours, 1, WHITE)
                         display.blit(number3, ((center)-(size), (center)-(size/2)))
@@ -80,15 +107,16 @@ def draw_digital_clock(time_input):
                         number3 = font.render(hours, 1, WHITE)
                         display.blit(number3, ((center)-(size), (center)-(size/2)))
 
-
+        #display the seconds and minutes
         display.blit(number, ((center)+(size/5), (center)-(size/2)))
 	display.blit(number2, ((center)-(size/2), (center)-(size/2)))
 
+        #update the window
 	pygame.display.update()
 
 
 def draw_analog_clock(time_input):
-
+        #calculate the seconds, minutes, and hour
 	sec = time_input * ((2*math.pi)/60)
 	min = time_input * ((2*math.pi)/3600)
 	hour = time_input * ((2*math.pi)/(3600*12))
@@ -178,8 +206,10 @@ def draw_analog_clock(time_input):
 	hour += 2*math.pi/(3600*12)
 
 def changeDisplay():
+        #tell method to use DISPLAY variable declared at the top of the class
         global DISPLAY
 
+        #complement the value of DISPLAY
         if DISPLAY == 12:
                 DISPLAY = 24
         elif DISPLAY == 24:
