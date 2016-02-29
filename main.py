@@ -25,7 +25,8 @@ sound_clock_tracker = 0
 #toggle = 3 to draw stop watch
 toggle = 0
 
-
+#sets initial time input for the stopwatch to 
+time_input_sw = 0
 #choice 4 for no sound
 sound_toggle = False
 choice = 4
@@ -55,9 +56,9 @@ while True:
 	elif (toggle == 2):
 		draw_digital_clock(int(time_input))
 	#draw stopwatch
-	#still need to create the draw_stopwatch method
+	#still need to alter the draw_stopwatch method
 	elif (toggle == 3):
-		draw_stopwatch(int(time_input))
+		draw_stopwatch(int(time_input_sw))
 
 	if (sound_toggle == True):
 		choice = choice - 1
@@ -91,4 +92,5 @@ while True:
 	#increments and loop sleep
 	sound_clock_tracker += 1
 	time_input += 0.1
+	time_input_sw += 0.1
 	time.sleep(0.1)

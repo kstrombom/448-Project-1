@@ -70,11 +70,7 @@ def draw_digital_clock(time_input):
 
         #determine with mode the clock is in
         if DISPLAY == 12:
-            if hr == 0:
-                #change the 0 hour mark to 12 for 12 hour mode
-                number3 = font.render("12", 1, WHITE)
-                display.blit(number3, ((center)-(size), (center)-(size/2)))
-            elif hr < 10:
+            if hr < 10:
                 #render hours normally but display then more to the right than normal
                 number3 = font.render(hours, 1, WHITE)
                 display.blit(number3, ((center)-(size/1.25), (center)-(size/2)))
@@ -122,9 +118,9 @@ def draw_digital_clock(time_input):
 	pygame.display.update()
 
 #need to alter digital clock code to be stopwatch code
-def draw_stopwatch(time_input):
-        #create clone of total seconds
-	temp_t = time_input
+def draw_stopwatch(time_input_sw):
+     #create clone of total seconds
+	temp_t = time_input_sw
 
 	#calculate the hour
 	hr = temp_t/3600
@@ -133,17 +129,14 @@ def draw_stopwatch(time_input):
         if DISPLAY == 12:
             hr = hr/13+ hr%13
 
-        #recalculate temp variable
+    #recalculate temp variable
 	temp_t = temp_t%3600
 
 	#calculate the minutes and seconds
 	mins = temp_t/60
 	secs = temp_t%60
 
-	#clear and fill the display
-	#display.fill(WHITE)
-
-        #create strings used for rendering
+    #create strings used for rendering
 	seconds = str(secs)
 	minutes = str(mins)
 	hours = str(hr)
@@ -154,9 +147,9 @@ def draw_stopwatch(time_input):
 	font = pygame.font.Font("Open 24 Display St.ttf", 80)
 
 	#used for AM/PM display if in 12 hour mode
-	font2 = pygame.font.Font("Open 24 Display St.ttf", 40)
+	#font2 = pygame.font.Font("Open 24 Display St.ttf", 40)
 
-        #determine if number of seconds is single digit
+    #determine if number of seconds is single digit
 	if secs < 10:
                 #render seconds with an additional 0
                 number = font.render(":0"+seconds, 1, WHITE)
@@ -171,45 +164,12 @@ def draw_stopwatch(time_input):
         else:
                 #render minutes normally
                 number2 = font.render(":"+minutes, 1, WHITE)
-
-        #determine with mode the clock is in
-        if DISPLAY == 12:
-            if hr == 0:
-                #change the 0 hour mark to 12 for 12 hour mode
-                number3 = font.render("12", 1, WHITE)
-                display.blit(number3, ((center)-(size), (center)-(size/2)))
-            elif hr < 10:
-                #render hours normally but display then more to the right than normal
-                number3 = font.render(hours, 1, WHITE)
-                display.blit(number3, ((center)-(size/1.25), (center)-(size/2)))
-            else:
-                    #display remaining hours that aren't accounted for above
-                    if hr == 10 or hr == 11 or hr == 12:
-                        number3 = font.render(hours, 1, WHITE)
-                        display.blit(number3, ((center)-(size), (center)-(size/2)))
-                    #display adjusted hour variable so that hours above 12 don't get displayed
-                    if DISPLAY == 12 and hr > 12:
-                        number3 = font.render(hours, 1, WHITE)
-                        display.blit(number3, ((center)-(size), (center)-(size/2)))
-                    elif DISPLAY == 24 and hr > 12:
-                        number3 = font.render(temp, 1, WHITE)
-                        display.blit(number3, ((center)-(size), (center)-(size/2)))
-
-            if time_input<43200:
-                #print AM if total seconds is less than 12 hours
-		period = font2.render("AM", 1, WHITE)
-		display.blit(period, ((center)+(size), (center)-(size/2)))
-            else:
-                #print PM if total seconds is greater than 12 hours
-                period = font2.render("PM", 1, WHITE)
-		display.blit(period, ((center)+(size), (center)-(size/7)))
-
-        elif DISPLAY == 24:
-            if hr < 10:
+			#determine if number of minutes is single digit
+        if hr < 10:
                     #print hours more to the right if single digit
                     number3 = font.render(hours, 1, WHITE)
                     display.blit(number3, ((center)-(size/1.25), (center)-(size/2)))
-            else:
+        else:
                     #print hours not accounted for
                     if hr == 10 or hr == 11 or hr == 12:
                         number3 = font.render(hours, 1, WHITE)
@@ -224,6 +184,7 @@ def draw_stopwatch(time_input):
 
         #update the window
 	pygame.display.update()
+	
 
 def draw_analog_clock(time_input):
         #calculate the seconds, minutes, and hour

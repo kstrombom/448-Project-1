@@ -20,6 +20,7 @@ pygame.display.set_icon(icon)
 pygame.display.set_caption("Best Clock")
 
 time_input = 0.0
+time_input_sw = 0.0
 
 #r = desired radius
 r = HEIGHT/2
