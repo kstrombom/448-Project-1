@@ -22,6 +22,7 @@ sound_clock_tracker = 0
 #toggle = 0 to start menu
 #toggle = 1 to draw analog clock
 #toggle = 2 to draw digital clock
+#toggle = 3 to draw stop watch
 toggle = 0
 
 
@@ -35,10 +36,8 @@ while True:
 	#displaying background
 	bg = pygame.image.load("material.png")
 	display.blit(bg, (0, 0))
-	#uncoment to display white background
-	#display.fill(WHITE)
 
-	#reset tracking varaibles when time hits 24:00:00
+	#reset tracking variables when time hits 24:00:00
 	if time_input > 86399:
 		time_input = 0
 		sound_clock_tracker = 0
@@ -55,6 +54,10 @@ while True:
         #draw digial clock
 	elif (toggle == 2):
 		draw_digital_clock(int(time_input))
+	#draw stopwatch
+	#still need to create the draw_stopwatch method
+	elif (toggle == 3):
+		draw_stopwatch(int(time_input))
 
 	if (sound_toggle == True):
 		choice = choice - 1
@@ -77,6 +80,8 @@ while True:
 				toggle = 2
 			elif event.key == pygame.K_s:
 				toggle = 0
+			elif event.key == pygame.K_k:
+				toggle = 3
 			elif event.key == pygame.K_w:
 				sound_toggle = True
 			elif event.key == pygame.K_m:

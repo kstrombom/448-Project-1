@@ -39,13 +39,17 @@ def runMenu():
 					out_toggle = 2
 					return out_toggle
 				elif event.key == pygame.K_s:
-                                        #change time/return to menu
+                                        #change time/return to m
 					out_toggle = 0
 					return out_toggle
 					print ("input time")
 				elif event.key == pygame.K_m:
                                         #return to menu
 					printMenu_console()
+				elif event.key == pygame.K_k: 
+										#draw stopwatch
+					out_toggle = 3
+					return out_toggle
 				elif event.key == pygame.K_SPACE:
                                         #change between 12 and 24 hour mode
 					print("need method to change to 24 hour mode")
@@ -57,10 +61,11 @@ def printMenu_console():
 	print ("Press s to set time")
 	print ("Press m for menu options")
 	print ("Press w to toggle through sounds")
+	print ("Press k for stopwatch")
 
 def printMenu_display():
 	display.fill(PALE_BLUE)
-	my_list = ("A for analog clock" , "D for digital clock" , "SPACE for 24/12 hr mode" , "S to set time" , "M for menu options","W to select tick sound")
+	my_list = ("A for analog clock" , "D for digital clock" , "SPACE for 24/12 hr mode" , "S to set time" , "M for menu options","W to select tick sound","K for stopwatch")
 	for i in range(len(my_list)):
 		message = font.render(my_list[i], 1, WHITE)
 		display.blit(message, (8, i*45 + 30))
