@@ -50,6 +50,14 @@ def runMenu():
 										#draw stopwatch
 					out_toggle = 3
 					return out_toggle
+				elif event.key == pygame.K_p:
+                                        #pause stopwatch
+					out_toggle = 4
+					return out_toggle
+				elif event.key == pygame.K_r:
+                                        #resume stopwatch
+					out_toggle = 4
+					return out_toggle
 				elif event.key == pygame.K_SPACE:
                                         #change between 12 and 24 hour mode
 					print("need method to change to 24 hour mode")
