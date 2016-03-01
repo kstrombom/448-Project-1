@@ -53,6 +53,7 @@ def runMenu():
 				elif event.key == pygame.K_SPACE:
                                         #change between 12 and 24 hour mode
 					print("need method to change to 24 hour mode")
+
 def printMenu_console():
         #print each individual option
 	print ("Press a for analog clock display")
@@ -62,6 +63,9 @@ def printMenu_console():
 	print ("Press m for menu options")
 	print ("Press w to toggle through sounds")
 	print ("Press k for stopwatch")
+	print ("Press p to pause stopwatch")
+	print ("Press r to resume stopwatch")
+	print ("Press x to reset stopwatch")
 
 def printMenu_display():
 	display.fill(PALE_BLUE)

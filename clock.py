@@ -146,10 +146,7 @@ def draw_stopwatch(time_input_sw):
 	#used for number display
 	font = pygame.font.Font("Open 24 Display St.ttf", 80)
 
-	#used for AM/PM display if in 12 hour mode
-	#font2 = pygame.font.Font("Open 24 Display St.ttf", 40)
-
-    #determine if number of seconds is single digit
+ 	#determine if number of seconds is single digit
 	if secs < 10:
                 #render seconds with an additional 0
                 number = font.render(":0"+seconds, 1, WHITE)
@@ -164,25 +161,19 @@ def draw_stopwatch(time_input_sw):
         else:
                 #render minutes normally
                 number2 = font.render(":"+minutes, 1, WHITE)
-			#determine if number of minutes is single digit
-        if hr < 10:
-                    #print hours more to the right if single digit
-                    number3 = font.render(hours, 1, WHITE)
-                    display.blit(number3, ((center)-(size/1.25), (center)-(size/2)))
-        else:
-                    #print hours not accounted for
-                    if hr == 10 or hr == 11 or hr == 12:
-                        number3 = font.render(hours, 1, WHITE)
-                        display.blit(number3, ((center)-(size), (center)-(size/2)))
-                    elif hr > 12:
-                        number3 = font.render(hours, 1, WHITE)
-                        display.blit(number3, ((center)-(size), (center)-(size/2)))
 
-        #display the seconds and minutes
-        display.blit(number, ((center)+(size/5), (center)-(size/2)))
+        if hr < 10:
+                #render hours normally but display then more to the right than normal
+                number3 = font.render("0"+hours, 1, WHITE)
+                display.blit(number3, ((center)-(size/0.9), (center)-(size/2)))
+        else:
+                number3 = font.render(temp, 1, WHITE)
+                display.blit(number3, ((center)-(size), (center)-(size/2)))
+	#display the seconds and minutes
+    	display.blit(number, ((center)+(size/5), (center)-(size/2)))
 	display.blit(number2, ((center)-(size/2), (center)-(size/2)))
 
-        #update the window
+    #update the window
 	pygame.display.update()
 	
 

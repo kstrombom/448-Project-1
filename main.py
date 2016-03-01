@@ -23,6 +23,8 @@ sound_clock_tracker = 0
 #toggle = 1 to draw analog clock
 #toggle = 2 to draw digital clock
 #toggle = 3 to draw stop watch
+#toggle = 4 to pause stopwatch
+#toggle = 5 to resume stopwatch
 toggle = 0
 
 #sets initial time input for the stopwatch to 
@@ -89,6 +91,8 @@ while True:
 				toggle = runMenu()
 			elif event.key == pygame.K_SPACE:
 				changeDisplay()
+			elif event.key == pygame.K_x:
+				time_input_sw = 0
 	#increments and loop sleep
 	sound_clock_tracker += 1
 	time_input += 0.1
