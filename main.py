@@ -107,6 +107,8 @@ while True:
 				toggle = 5
 			elif event.key == pygame.K_b:
 				toggle = 6
+		elif event.type == pygame.MOUSEMOTION:
+			toggle = runMenu()
 	#increments and loop sleep
 	sound_clock_tracker += 1
 	time_input += 0.1

@@ -64,6 +64,8 @@ def runMenu():
 				elif event.key == pygame.K_b:
 					out_toggle = 6
 					return out_toggle
+			if event.type == pygame.MOUSEMOTION:
+				printMenu_console()
 
 def printMenu_console():
         #print each individual option
@@ -102,7 +104,7 @@ def input_menu():
 		draw_string(''.join(input_string),8,7*45 + 30)
 		for event in pygame.event.get():
 			if event.type == pygame.KEYDOWN:
-				if event.key in (pygame.K_0, pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9 ):
+				if event.key in (pygame.K_0, pygame.K_1, pygame.K_2, pygbame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9 ):
 					if i <= 8:
 						if input_string[i] == ':':
 							i += 1
