@@ -56,11 +56,14 @@ def runMenu():
 					return out_toggle
 				elif event.key == pygame.K_r:
                                         #resume stopwatch
-					out_toggle = 4
+					out_toggle = 5
 					return out_toggle
 				elif event.key == pygame.K_SPACE:
                                         #change between 12 and 24 hour mode
 					print("need method to change to 24 hour mode")
+				elif event.key == pygame.K_b:
+					out_toggle = 6
+					return out_toggle
 
 def printMenu_console():
         #print each individual option
@@ -74,6 +77,7 @@ def printMenu_console():
 	print ("Press p to pause stopwatch")
 	print ("Press r to resume stopwatch")
 	print ("Press x to reset stopwatch")
+	print ("Press b to black out screen")
 
 def printMenu_display():
 	display.fill(PALE_BLUE)
@@ -86,7 +90,7 @@ def printMenu_display():
 def draw_string(string_in,x,y):
 	time_str = font.render(string_in, 1, WHITE)
 	display.blit(time_str, (x, y))
-	pygame.display.update()
+	
 
 
 #method to accept numeric keyboard input on pygame window
@@ -128,3 +132,7 @@ def input_menu():
 				pygame.quit()
 				sys.exit()
 	time.sleep(0.1)
+
+def black_screen():
+	display.fill(PALE_BLUE)
+	pygame.display.update()
