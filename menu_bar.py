@@ -1,4 +1,4 @@
-"""
+""""
 @file: menu_bar.py
 @author: Diego Soliz, Shane Chu, Michael Bechtel, Connor Welsh, Dustin Wendt
 @date: 2016.02.14
@@ -18,37 +18,7 @@ from feed_HMS import *
 font = pygame.font.Font("Anita semi square.ttf", 20)
 number = font.render("12", 1, BLACK)
 
-def runMenu():
-        #print the menu
-	printMenu_console()
-	printMenu_display()
-	while True:
-		for event in pygame.event.get():
-                        #quit the program if the window is closed
-			if event.type == QUIT:
-					pygame.quit()
-					sys.exit()
-                        #perform action according to key pressed
-			if event.type == pygame.KEYDOWN:
-				if event.key == pygame.K_a:
-                                        #draw analog clock
-					out_toggle = 1
-					return out_toggle
-				elif event.key == pygame.K_d:
-                                        #draw digital clock
-					out_toggle = 2
-					return out_toggle
-				elif event.key == pygame.K_s:
-                                        #change time/return to menu
-					out_toggle = 0
-					return out_toggle
-					print ("input time")
-				elif event.key == pygame.K_m:
-                                        #return to menu
-					printMenu_console()
-				elif event.key == pygame.K_SPACE:
-                                        #change between 12 and 24 hour mode
-					print("need method to change to 24 hour mode")
+
 def printMenu_console():
         #print each individual option
 	print ("Press a for analog clock display")
@@ -110,4 +80,14 @@ def input_menu():
 			if event.type == QUIT:
 				pygame.quit()
 				sys.exit()
+
+	time_input += .1
+	print("hello")
 	time.sleep(0.1)
+
+
+def update_time_input(time):
+	time += .1
+	return time
+
+
