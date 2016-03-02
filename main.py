@@ -54,6 +54,7 @@ while True:
 			print ("Insert time using number keys on the pygame window (format hr 00 min 00 sec 00):")
 			time_input = input_menu()
         #draw analog clock
+                        #quit the program if the window is 
 	elif (toggle == 1):
 		draw_analog_clock(int(time_input))
         #draw digial clock
@@ -63,13 +64,13 @@ while True:
 	#still need to alter the draw_stopwatch method
 	elif (toggle == 3):
 		draw_stopwatch(int(time_input_sw))
-	elif (toggle ==4):
+	elif (toggle ==4): #pause
 		store = time_input_sw
-	elif (toggle == 5):
-		tim_input_sw = store		
+	elif (toggle == 5): #reset time input
+		time_input_sw = store		
 		draw_stopwatch(int(time_input_sw))
-	elif (toggle == 6):
-		black_screen()
+	#elif (toggle == 6):
+	#	black_screen()
 	if (sound_toggle == True):
 		choice = choice - 1
 		if choice == 0:
@@ -107,8 +108,8 @@ while True:
 				toggle = 5
 			elif event.key == pygame.K_b:
 				toggle = 6
-		elif event.type == pygame.MOUSEMOTION:
-			toggle = runMenu()
+		#elif event.type == pygame.MOUSEMOTION:
+			#toggle = runMenu()
 	#increments and loop sleep
 	sound_clock_tracker += 1
 	time_input += 0.1

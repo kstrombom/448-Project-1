@@ -64,8 +64,8 @@ def runMenu():
 				elif event.key == pygame.K_b:
 					out_toggle = 6
 					return out_toggle
-			if event.type == pygame.MOUSEMOTION:
-				printMenu_console()
+			#if event.type == pygame.MOUSEMOTION:
+				#printMenu_console()
 
 def printMenu_console():
         #print each individual option
