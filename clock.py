@@ -18,9 +18,10 @@ font = pygame.font.Font("Vonique_64_Bold.ttf", 30)
 
 #need method to draw markers
 
-def draw_digital_clock(time_input):
+def draw_digital_clock (curr_time):
+
         #create clone of total seconds
-	temp_t = time_input
+	temp_t = curr_time
 
 	#calculate the hour
 	hr = temp_t/3600
@@ -91,7 +92,7 @@ def draw_digital_clock(time_input):
                         number3 = font.render(temp, 1, WHITE)
                         display.blit(number3, ((center)-(size), (center)-(size/2)))
 
-            if time_input<43200:
+            if curr_time<43200:
                 #print AM if total seconds is less than 12 hours
 		period = font2.render("AM", 1, WHITE)
 		display.blit(period, ((center)+(size), (center)-(size/2)))
@@ -122,11 +123,11 @@ def draw_digital_clock(time_input):
 	pygame.display.update()
 
 
-def draw_analog_clock(time_input):
+def draw_analog_clock(curr_time):
         #calculate the seconds, minutes, and hour
-	sec = time_input * ((2*math.pi)/60)
-	min = time_input * ((2*math.pi)/3600)
-	hour = time_input * ((2*math.pi)/(3600*12))
+	sec = curr_time * ((2*math.pi)/60)
+	min = curr_time * ((2*math.pi)/3600)
+	hour = curr_time * ((2*math.pi)/(3600*12))
 
 
 	#clear and fill the display
@@ -143,11 +144,11 @@ def draw_analog_clock(time_input):
             if x % 5 == 0:
                     if x == 0:
                             #indicate that the time is between 0 and 12
-                            if DISPLAY == 24 and time_input < 43200:
+                            if DISPLAY == 24 and curr_time < 43200:
                                     number = font.render("12", 1, WHITE)
                                     number2 = font.render("24", 1, RED)
                             #indicate that the time is between 13 and 24
-                            elif DISPLAY == 24 and time_input >= 43200:
+                            elif DISPLAY == 24 and curr_time >= 43200:
                                     number = font.render("12", 1, RED)
                                     number2 = font.render("24", 1, WHITE)
                             #assume the user has it on a 12 hour cycle
@@ -155,11 +156,11 @@ def draw_analog_clock(time_input):
                                     number = font.render("12", 1, WHITE)
                     else:
                             #indicate that the time is between 0 and 12
-                            if DISPLAY == 24 and time_input < 43200:
+                            if DISPLAY == 24 and curr_time < 43200:
                                     number = font.render(str(Decimal(x/5)), 1, WHITE)
                                     number2 = font.render(str(Decimal(x/5)+12), 1, RED)
                             #indicate that the time is between 13 and 24
-                            if DISPLAY == 24 and time_input >= 43200:
+                            if DISPLAY == 24 and curr_time >= 43200:
                                     number = font.render(str(Decimal(x/5)), 1, RED)
                                     number2 = font.render(str(Decimal((x/5)+12)), 1, WHITE)
                             #assume the user has it on a 12 hour cycle
@@ -188,9 +189,9 @@ def draw_analog_clock(time_input):
 
         #Display AM or PM if in 12 hour mode
 	if DISPLAY==12:
-                if time_input < 43200:
+                if curr_time < 43200:
                         side = font.render("AM", 1, WHITE)
-                elif time_input >= 43200:
+                elif curr_time >= 43200:
                         side = font.render("PM", 1, WHITE)
 
                 display.blit(side, (center-10,center+25))
@@ -203,9 +204,9 @@ def draw_analog_clock(time_input):
 	#update display changes
 	pygame.display.update()
 
-        #reset time_input if it reaches the end of the 24 hour period
-	if time_input == 86400:
-                time_input = 0
+        #reset curr_time if it reaches the end of the 24 hour period
+	if curr_time == 86400:
+                curr_time = 0
 
 	#increase by 1/60 of revolution AKA 1 second
 	sec += 2*math.pi/60
@@ -213,6 +214,7 @@ def draw_analog_clock(time_input):
 	hour += 2*math.pi/(3600*12)
 
 def changeDisplay():
+
         #tell method to use DISPLAY variable declared at the top of the class
         global DISPLAY
 
