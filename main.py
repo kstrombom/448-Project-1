@@ -1,9 +1,9 @@
 """
 @file: main.py
-@original authors: Diego Soliz, Shane Chu, Michael Bechtel, Connor Welsh, Dustin Wendt
-@New Authors: Quinton Wiley, Omar Alzubbi, Julia Drahozal, Kate Strombom
+@original_authors: Diego Soliz, Shane Chu, Michael Bechtel, Connor Welsh, Dustin Wendt
+@new_authors: Quinton Wiley, Omar Alzubbi, Julia Drahozal, Kate Strombom
 @date: 2016.02.14
-@brief: Main class. Used to give user program options and change the program accordingly.
+@brief: Main class. Used to run program.
 """
 
 #!/usr/bin/python
@@ -26,8 +26,9 @@ choice = 4
 
 sound = select_sound_display (choice)
 curr_time = 0;
-curr_mo = 0;
-curr_date = 0;
+curr_cal = [0, 0]
+# jan 01 2016 = friday
+curr_count = 5
 
 while True:
 
@@ -40,6 +41,7 @@ while True:
 	if curr_time > 86399:
 		curr_time = 0
 		sound_clock_tracker = 0
+		updateDate (curr_cal)
 
         # menu screen
 	if (toggle == 0):
@@ -90,15 +92,17 @@ while True:
 			print ("Insert time using number keys on the pygame window (format hr 00 min 00 sec 00):")
 			curr_time = input_time_menu ()
 			print ("Insert date using number keys on the pygame window (format mo 00 date 00):")
-			curr_date = input_date_menu ()
+			curr_cal = input_date_menu ()
+			curr_mo = curr_cal[0]
+			curr_date = curr_cal[1]
 			
         # analog clock screen
 	elif (toggle == 1):
-		draw_analog_clock (int (curr_time))
+		draw_analog_clock (int (curr_time), curr_count)
 		
         # digital clock
 	elif (toggle == 2):
-		draw_digital_clock (int (curr_time))
+		draw_digital_clock (int (curr_time), curr_count)
 
 	if (sound_toggle == True):
 		choice = choice - 1

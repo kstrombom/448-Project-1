@@ -2,33 +2,46 @@
 @file: feed_HMS.py
 @author: Diego Soliz, Shane Chu, Michael Bechtel, Connor Welsh, Dustin Wendt
 @date: 2016.02.14
-@brief: Feed_HMS class. Used get input from the user and handle exceptions.
+@brief: Feed_HMS class. Used get input from the user and update time.
 """
 
-hour_range = [x+1 for x in range(13)] #[1,2,....,12]
-minute_range = [x for x in range(60)] #[0,1,2,....,59]
-second_range = [x for x in range(60)] #[0,1,2,....,59]
+######################################################################
+########################### VALIDATE INPUTS ##########################
+######################################################################
 
+# check if time input is valid
 def str_input_time_check (string):
+
+	# variables
         is_acceptable = False
         time_in_sec = 0
-        input_hr = int (string[0]+string[1])
-        input_min = int (string[3]+string[4])
-        input_sec = int (string[6]+string[7])
+        # get inputs
+        input_hr = int (string[0] + string[1])
+        input_min = int (string[3] + string[4])
+        input_sec = int (string[6] + string[7])
+        
+        # tests:
+        # hr, min, and sec within bounds
         if (input_hr > 23 or input_min > 59 or input_sec > 59):
                 is_acceptable = False
+        # passed!
         else:
                 is_acceptable = True
                 time_in_sec =  input_hr * 3600 + input_min * 60 + input_sec
-        
         return (is_acceptable, time_in_sec)
 
+# check if date input is valid
 def str_input_date_check (string):
+
+	# variables
         is_acceptable = False
-        date_in_days = 0
+	date = [0, 0]
+	# get inputs
         input_mo = int (string[0]+string[1])
         input_date = int (string[3]+string[4])
-        # month outside bounds
+        
+        # tests:
+        # month within bounds and date != 0
         if (input_mo > 12 or input_mo == 0 or input_date == 0):
                 is_acceptable = False
         # months with 31 days
@@ -40,78 +53,63 @@ def str_input_date_check (string):
         # month with 29 days
         elif (input_mo == 2 and input_date > 29):
         	is_acceptable = False   	      
+        # passed!
         else:
                 is_acceptable = True
-   
-   	# ADD METHOD TO CONVERT DATE_IN_DAYS TO MONTH AND DATE            
-        
-        return (is_acceptable, date_in_days)
+   		date[0] = input_mo
+   		date[1] = input_date
+        return (is_acceptable, date)
+
+######################################################################
+############################# UPDATE TIME ############################
+######################################################################
+
+# increment time
+def update_time (time):
+	time += .1
+	return time
+
+# increment date	
+def update_date (calendar):
+	curr_count = curr_count + 1
+	if (curr_count == 8):
+		curr_count == 1
+	date = calendar[1]
+	calendar[1] = date + 1
+	calendar = wrapDate (calendar)
+	return calendar
+
+# wrap date around to next month
+def wrapDate (calendar):
+
+	# variables
+	mo_31 = [1, 3, 5, 7, 8, 10, 12]
+	mo_30 = [4, 6, 9, 11]
+	mo_29 = [2]
+	mo = calendar[0]
+	date = calendar[1]
+	
+	# months with 31 days
+	if ((mo in mo_31) and (date == 32)):
+		mo = x_mo + 1
+		date = 1
+		# wrap dec to jan
+		if (mo == 13):
+			mo = 1
+	# months with 30 days
+	if ((mo in mo_30) and (date == 31)):
+		mo = x_mo + 1
+		date = 1
+	# months with 29 days
+	if ((mo in mo_29) and (date == 30)):
+		mo = x_mo + 1
+		date = 1
+
+	return [mo, date]
+
+def calculateDay (count):
+
+	# Jan 01 2016 = FRIDAY
+	day = 0
 
 
-def hour():
-	hour = -1
-	while hour not in hour_range:
-		try:
-			hour = input("Please enter the hour (0-12)! : ")
-			hour = int(hour)
-		except:
-			hour = -1
-			print ("User entered a non-numeric argument.")
-	
-	# return hour in the unit of seconds
-	return hour*60*60
-	
-		
-def am_pm():
-	am_pm = input("Please enter am or pm: ")
-	
-	while am_pm.lower() != "am" and am_pm.lower() != "pm" :
-		am_pm = input("Please enter either am or pm! : ")
-
-	return am_pm	
-
-def minute():
-	
-	minute = -1
-	while minute not in minute_range:
-		try:
-			minute = input("Please enter the minute (0-60)! : ")
-			minute = int(minute)
-		except:
-			minute = -1
-			print ("User entered in a non-numeric argument.")
-
-	# return minute in the unit of seconds	
-	return minute*60
-		
-		
-def second():
-	second = -1
-	while second not in second_range:
-		try:
-			second = input("Please enter the second (0-60)! : ")
-			second = int(second)
-		except:
-			second = -1
-			print ("User entered a non-numeric argument.")
-	return second
-	
-def run():
-	h = hour()
-	m = minute()
-	s = second()
-	return h + m + s
-	
-def run2():
-	ap = am_pm()
-	return ap
-
-if __name__ == '__main__':
-	h = hour()
-	ap = am_pm()
-	m = minute()
-	s = second()
-	
-	h = (h/60)/60
-	m = m/60
-	print("Right now it's {0}:{1}:{2},{3}!".format(h,m,s,ap))

@@ -12,127 +12,150 @@ from decimal import Decimal
 
 DISPLAY = 12
 
-#font = pygame.font.Font(None, 25)
 font = pygame.font.Font("Vonique_64_Bold.ttf", 30)
 
+# switch between 12 and 24 hours
+def changeDisplay():
 
-#need method to draw markers
+        #tell method to use DISPLAY variable declared at the top of the class
+        global DISPLAY
 
-def draw_digital_clock (curr_time):
-
-        #create clone of total seconds
-	temp_t = curr_time
-
-	#calculate the hour
-	hr = temp_t/3600
-
-        #adjust the hour if in 12 hour mode
+        #complement the value of DISPLAY
         if DISPLAY == 12:
-            hr = hr/13+ hr%13
+                DISPLAY = 24
+        elif DISPLAY == 24:
+                DISPLAY = 12
 
-        #recalculate temp variable
+######################################################################
+############################### DIGITAL ##############################
+######################################################################
+
+# draw digital clock
+def draw_digital_clock (curr_time, curr_count):
+
+	# variables:
+	temp_t = curr_time
+	# hour
+	hr = temp_t / 3600
+        if DISPLAY == 12:
+            hr = hr / 13 + hr % 13
+	hours = str (hr)            
 	temp_t = temp_t%3600
-
-	#calculate the minutes and seconds
-	mins = temp_t/60
-	secs = temp_t%60
-
-	#clear and fill the display
-	#display.fill(WHITE)
-
-        #create strings used for rendering
-	seconds = str(secs)
-	minutes = str(mins)
-	hours = str(hr)
-
+	# minutes
+	mins = temp_t / 60
+	minutes = str (mins)
+	# seconds
+	secs = temp_t % 60
+	seconds = str (secs)
+	# size
 	size = 130
 
-	#used for number display
-	font = pygame.font.Font("Open 24 Display St.ttf", 80)
+	# font -- number display
+	font = pygame.font.Font ("Open 24 Display St.ttf", 80)
+	# font -- am / pm 
+	font2 = pygame.font.Font ("Open 24 Display St.ttf", 40)
 
-	#used for AM/PM display if in 12 hour mode
-	font2 = pygame.font.Font("Open 24 Display St.ttf", 40)
-
-        #determine if number of seconds is single digit
+        # single digit seconds
 	if secs < 10:
-                #render seconds with an additional 0
-                number = font.render(":0"+seconds, 1, WHITE)
+                # render seconds with an additional 0
+                number = font.render (":0"+seconds, 1, WHITE)
         else:
-                #render seconds normally
-                number = font.render(":"+seconds, 1, WHITE)
+                # render seconds normally
+                number = font.render (":"+seconds, 1, WHITE)
 
-        #determine if number of minutes is single digit
+        # single digit minutes
         if mins < 10:
-                #render minutes with an additional 0
-                number2 = font.render(":0"+minutes, 1, WHITE)
+                # render minutes with an additional 0
+                number2 = font.render (":0"+minutes, 1, WHITE)
         else:
-                #render minutes normally
-                number2 = font.render(":"+minutes, 1, WHITE)
+                # render minutes normally
+                number2 = font.render (":"+minutes, 1, WHITE)
 
-        #determine with mode the clock is in
+        # 12 hour display
         if DISPLAY == 12:
-            if hr == 0:
-                #change the 0 hour mark to 12 for 12 hour mode
-                number3 = font.render("12", 1, WHITE)
-                display.blit(number3, ((center)-(size), (center)-(size/2)))
-            elif hr < 10:
-                #render hours normally but display then more to the right than normal
-                number3 = font.render(hours, 1, WHITE)
-                display.blit(number3, ((center)-(size/1.25), (center)-(size/2)))
-            else:
-                    #display remaining hours that aren't accounted for above
-                    if hr == 10 or hr == 11 or hr == 12:
-                        number3 = font.render(hours, 1, WHITE)
-                        display.blit(number3, ((center)-(size), (center)-(size/2)))
-                    #display adjusted hour variable so that hours above 12 don't get displayed
-                    if DISPLAY == 12 and hr > 12:
-                        number3 = font.render(hours, 1, WHITE)
-                        display.blit(number3, ((center)-(size), (center)-(size/2)))
-                    elif DISPLAY == 24 and hr > 12:
-                        number3 = font.render(temp, 1, WHITE)
-                        display.blit(number3, ((center)-(size), (center)-(size/2)))
+        	if (hr == 0):
+               		# change the 0 hour mark to 12 for 12 hour mode
+               		number3 = font.render ("12", 1, WHITE)
+               		display.blit (number3, (center - size, center - (size / 2)))
+            	elif (hr < 10):
+                	# render hours normally but display then more to the right than normal
+                	number3 = font.render (hours, 1, WHITE)
+                	display.blit (number3, (center - (size / 1.25), center - (size / 2)))
+            	else:
+                    	# display remaining hours that aren't accounted for above
+                    	if (hr == 10 or hr == 11 or hr == 12):
+                       		number3 = font.render(hours, 1, WHITE)
+                        	display.blit(number3, (center - size, center - (size / 2)))
+                    	# display adjusted hour variable so that hours above 12 don't get displayed
+                    	if (DISPLAY == 12 and hr > 12):
+                        	number3 = font.render (hours, 1, WHITE)
+                        	display.blit(number3, (center - size, center - (size / 2)))
+                    	elif (DISPLAY == 24 and hr > 12):
+                        	number3 = font.render(temp, 1, WHITE)
+                        	display.blit (number3, (center - size, center - (size / 2)))
 
-            if curr_time<43200:
-                #print AM if total seconds is less than 12 hours
-		period = font2.render("AM", 1, WHITE)
-		display.blit(period, ((center)+(size), (center)-(size/2)))
-            else:
-                #print PM if total seconds is greater than 12 hours
-                period = font2.render("PM", 1, WHITE)
-		display.blit(period, ((center)+(size), (center)-(size/7)))
+		# am
+            	if (curr_time < 43200):
+                	# print AM if total seconds is less than 12 hours
+			period = font2.render ("AM", 1, WHITE)
+			display.blit (period, (center + size, center - (size / 2)))
+		# pm
+            	else:
+                	# print PM if total seconds is greater than 12 hours
+                	period = font2.render ("PM", 1, WHITE)
+			display.blit (period, (center + size, center - (size / 7)))
 
-        elif DISPLAY == 24:
-            if hr < 10:
-                    #print hours more to the right if single digit
-                    number3 = font.render(hours, 1, WHITE)
-                    display.blit(number3, ((center)-(size/1.25), (center)-(size/2)))
-            else:
-                    #print hours not accounted for
-                    if hr == 10 or hr == 11 or hr == 12:
-                        number3 = font.render(hours, 1, WHITE)
-                        display.blit(number3, ((center)-(size), (center)-(size/2)))
-                    elif hr > 12:
-                        number3 = font.render(hours, 1, WHITE)
-                        display.blit(number3, ((center)-(size), (center)-(size/2)))
+	# 24 hour display
+        elif (DISPLAY == 24):
+            	if (hr < 10):
+                    	# print hours more to the right if single digit
+                    	number3 = font.render(hours, 1, WHITE)
+                    	display.blit (number3, (center - (size / 1.25), center - (size / 2)))
+            	else:
+                	# print hours not accounted for
+                    	if (hr == 10 or hr == 11 or hr == 12):
+                        	number3 = font.render(hours, 1, WHITE)
+                        	display.blit (number3, (center - size, center - (size / 2)))
+                    	elif (hr > 12):
+                        	number3 = font.render(hours, 1, WHITE)
+                        	display.blit (number3, (center - size, center-(size/2)))
 
-        #display the seconds and minutes
-        display.blit(number, ((center)+(size/5), (center)-(size/2)))
-	display.blit(number2, ((center)-(size/2), (center)-(size/2)))
+        # display the seconds and minutes
+        display.blit (number, (center + (size / 5), center - (size / 2)))
+	display.blit (number2, (center - (size / 2), center - (size / 2)))
 
-        #update the window
+	# display day of the week
+	day = ""
+	if (curr_count == 1):
+		day = "MONDAY"
+	elif (curr_count == 2):
+		day = "TUESDAY"
+	elif (curr_count == 3):
+		day = "WEDNESDAY"
+	elif (curr_count == 4):
+		day = "THURSDAY"
+	elif (curr_count == 5):
+		day = "FRIDAY"
+	elif (curr_count == 6):
+		day = "SATURDAY"
+	elif (curr_count == 7):
+		day = "SUNDAY"
+	
+	day = font2.render (day, 1, WHITE)
+	display.blit (day, (center - (size / 2), center + (size / 2)))
+		
+        # update the window
 	pygame.display.update()
 
+######################################################################
+################################ ANALOG ##############################
+######################################################################
 
-def draw_analog_clock(curr_time):
+def draw_analog_clock(curr_time, curr_count):
         #calculate the seconds, minutes, and hour
 	sec = curr_time * ((2*math.pi)/60)
 	min = curr_time * ((2*math.pi)/3600)
 	hour = curr_time * ((2*math.pi)/(3600*12))
-
-
-	#clear and fill the display
-
-	#display.fill(WHITE)
 
         #draw the clock display
 	for x in range(0,60):
@@ -195,11 +218,32 @@ def draw_analog_clock(curr_time):
                         side = font.render("PM", 1, WHITE)
 
                 display.blit(side, (center-10,center+25))
+                
+	# display day of the week
+	day = ""
+	if (curr_count == 1):
+		day = "MONDAY"
+	elif (curr_count == 2):
+		day = "TUESDAY"
+	elif (curr_count == 3):
+		day = "WEDNESDAY"
+	elif (curr_count == 4):
+		day = "THURSDAY"
+	elif (curr_count == 5):
+		day = "FRIDAY"
+	elif (curr_count == 6):
+		day = "SATURDAY"
+	elif (curr_count == 7):
+		day = "SUNDAY"
+	
+	day = font.render (day, 1, WHITE)
+	display.blit (day, (center - 35, center + 50))
 
 	#drawing line
 	pygame.draw.line(display, BLACK, (center, center), (center+x_hour, center+y_hour), 5)
 	pygame.draw.line(display, BLUE, (center, center), (center+x_min, center+y_min), 4)
 	pygame.draw.line(display, RED, (center, center), (center+x_sec, center+y_sec), 3)
+
 
 	#update display changes
 	pygame.display.update()
@@ -213,13 +257,3 @@ def draw_analog_clock(curr_time):
 	min += 2*math.pi/(3600)
 	hour += 2*math.pi/(3600*12)
 
-def changeDisplay():
-
-        #tell method to use DISPLAY variable declared at the top of the class
-        global DISPLAY
-
-        #complement the value of DISPLAY
-        if DISPLAY == 12:
-                DISPLAY = 24
-        elif DISPLAY == 24:
-                DISPLAY = 12

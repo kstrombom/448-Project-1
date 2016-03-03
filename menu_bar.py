@@ -5,22 +5,21 @@
 @brief: Menu_bar class. Used to show options menu to the user.
 """
 
-#----------------------------
-#WORK IN PROGRESS
-#----------------------------
 from settings import *
 import math
 import time
 from feed_HMS import *
 
-#need method to draw instruction in display
-#font = pygame.font.Font("Anita semi square.ttf", 25)
 font = pygame.font.Font("Anita semi square.ttf", 20)
 number = font.render("12", 1, BLACK)
 
+######################################################################
+############################# PRINT MENU #############################
+######################################################################
 
-def printMenu_console():
-        #print each individual option
+# print menu options in console
+def printMenu_console ():
+
 	print ("Press a for analog clock display")
 	print ("Press d for digital clock display")
 	print ("press space to change between 24 or 12 hour mode")
@@ -28,7 +27,9 @@ def printMenu_console():
 	print ("Press m for menu options")
 	print ("Press w to toggle through sounds")
 
-def printMenu_display():
+# print menu options in display
+def printMenu_display ():
+
 	display.fill(PALE_BLUE)
 	my_list = ("A for analog clock" , "D for digital clock" , "SPACE for 24/12 hr mode" , "S to set time" , "M for menu options","W to select tick sound")
 	for i in range(len(my_list)):
@@ -36,11 +37,16 @@ def printMenu_display():
 		display.blit(message, (8, i*45 + 30))
 	pygame.display.update()
 
-def draw_string(string_in,x,y):
+# draw string given text and position
+def draw_string (string_in,x,y):
+
 	time_str = font.render(string_in, 1, WHITE)
 	display.blit(time_str, (x, y))
 	pygame.display.update()
 
+######################################################################
+############################# GET INPUTS #############################
+######################################################################
 
 # get time from user
 def input_time_menu ():
@@ -139,8 +145,5 @@ def input_date_menu ():
 	time.sleep(0.1)
 
 
-def update_time(time):
-	time += .1
-	return time
 
 
