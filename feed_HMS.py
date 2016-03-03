@@ -107,9 +107,40 @@ def wrapDate (calendar):
 
 	return [mo, date]
 
-def calculateDay (count):
+# calculate day of week given month and date
+def calculateDay (cal):
 
 	# Jan 01 2016 = FRIDAY
-	day = 0
+	
+	# variables
+	mo_31 = [1, 3, 5, 7, 8, 10, 12]
+	mo_30 = [4, 6, 9, 11]
+	mo_29 = [2]
+	mo = cal[0]
+	day = cal[1]
+	count = 0
+	
+	# count days passed
+	for i in xrange (mo):
+	
+		if ((i + 1) == mo):
+			for j in xrange (day):
+				count = count + 1	
+		elif ((i + 1) in mo_31):
+			for j in xrange (31):
+				count = count + 1		
+		elif ((i + 1) in mo_30):
+			for j in xrange (30):
+				count = count + 1		
+		elif ((i + 1) in mo_29):
+			for j in xrange (29):
+				count = count + 1	
+
+	day = (count + 4) % 7 
+	print day
+	return day
+	
+	
+	
 
 

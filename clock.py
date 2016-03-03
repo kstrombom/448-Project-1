@@ -31,7 +31,7 @@ def changeDisplay():
 ######################################################################
 
 # draw digital clock
-def draw_digital_clock (curr_time, curr_count):
+def draw_digital_clock (curr_time, curr_day):
 
 	# variables:
 	temp_t = curr_time
@@ -126,19 +126,19 @@ def draw_digital_clock (curr_time, curr_count):
 
 	# display day of the week
 	day = ""
-	if (curr_count == 1):
+	if (curr_day == 1):
 		day = "MONDAY"
-	elif (curr_count == 2):
+	elif (curr_day == 2):
 		day = "TUESDAY"
-	elif (curr_count == 3):
+	elif (curr_day == 3):
 		day = "WEDNESDAY"
-	elif (curr_count == 4):
+	elif (curr_day == 4):
 		day = "THURSDAY"
-	elif (curr_count == 5):
+	elif (curr_day == 5):
 		day = "FRIDAY"
-	elif (curr_count == 6):
+	elif (curr_day == 6):
 		day = "SATURDAY"
-	elif (curr_count == 7):
+	elif (curr_day == 7):
 		day = "SUNDAY"
 	
 	day = font2.render (day, 1, WHITE)
@@ -151,109 +151,99 @@ def draw_digital_clock (curr_time, curr_count):
 ################################ ANALOG ##############################
 ######################################################################
 
-def draw_analog_clock(curr_time, curr_count):
-        #calculate the seconds, minutes, and hour
-	sec = curr_time * ((2*math.pi)/60)
-	min = curr_time * ((2*math.pi)/3600)
-	hour = curr_time * ((2*math.pi)/(3600*12))
+# draw analog clock
+def draw_analog_clock(curr_time, curr_day):
 
-        #draw the clock display
-	for x in range(0,60):
-            angle = x * ((2*math.pi)/60)
-            y_coor = (r*.9)*(-math.cos(angle))
-            x_coor = (r*.9)*(math.sin(angle))
+        # calculate the seconds, minutes, and hour
+	sec = curr_time * ((2 * math.pi) / 60)
+	min = curr_time * ((2 * math.pi) / 3600)
+	hour = curr_time * ((2 * math.pi) / (3600 * 12))
 
-            #draw the numbers representing hours
-            if x % 5 == 0:
-                    if x == 0:
-                            #indicate that the time is between 0 and 12
-                            if DISPLAY == 24 and curr_time < 43200:
-                                    number = font.render("12", 1, WHITE)
-                                    number2 = font.render("24", 1, RED)
-                            #indicate that the time is between 13 and 24
-                            elif DISPLAY == 24 and curr_time >= 43200:
-                                    number = font.render("12", 1, RED)
-                                    number2 = font.render("24", 1, WHITE)
-                            #assume the user has it on a 12 hour cycle
-                            elif DISPLAY == 12:
-                                    number = font.render("12", 1, WHITE)
+        # draw the clock display
+	for x in range (0, 60):
+            angle = x * ((2 * math.pi) / 60)
+            y_coor = (r * .9) * (-math.cos (angle))
+            x_coor = (r * .9) * (math.sin (angle))
+
+            # draw the numbers representing hours
+            if (x % 5 == 0):
+                    if (x == 0):
+                            # indicate that the time is between 0 and 12
+                            if( DISPLAY == 24 and curr_time < 43200):
+                                    number = font.render ("12", 1, WHITE)
+                                    number2 = font.render ("24", 1, RED)
+                            # indicate that the time is between 13 and 24
+                            elif (DISPLAY == 24 and curr_time >= 43200):
+                                    number = font.render ("12", 1, RED)
+                                    number2 = font.render ("24", 1, WHITE)
+                            # assume the user has it on a 12 hour cycle
+                            elif (DISPLAY == 12):
+                                    number = font.render ("12", 1, WHITE)
                     else:
-                            #indicate that the time is between 0 and 12
-                            if DISPLAY == 24 and curr_time < 43200:
-                                    number = font.render(str(Decimal(x/5)), 1, WHITE)
-                                    number2 = font.render(str(Decimal(x/5)+12), 1, RED)
-                            #indicate that the time is between 13 and 24
-                            if DISPLAY == 24 and curr_time >= 43200:
-                                    number = font.render(str(Decimal(x/5)), 1, RED)
-                                    number2 = font.render(str(Decimal((x/5)+12)), 1, WHITE)
+                            # indicate that the time is between 0 and 12
+                            if (DISPLAY == 24 and curr_time < 43200):
+                                    number = font.render (str (Decimal (x / 5)), 1, WHITE)
+                                    number2 = font.render (str (Decimal (x / 5) + 12), 1, RED)
+                            # indicate that the time is between 13 and 24
+                            if (DISPLAY == 24 and curr_time >= 43200):
+                                    number = font.render (str (Decimal (x / 5)), 1, RED)
+                                    number2 = font.render (str (Decimal ((x / 5) + 12)), 1, WHITE)
                             #assume the user has it on a 12 hour cycle
-                            elif DISPLAY == 12:
-                                    number = font.render(str(Decimal(x/5)), 1, WHITE)
+                            elif (DISPLAY == 12):
+                                    number = font.render (str (Decimal (x / 5)), 1, WHITE)
+                    display.blit (number, ((center + x_coor) - 5, (center + y_coor) - 10))
+                    if (DISPLAY == 24):
+                            display.blit (number2, (center + (x_coor * .8) - 5, center + (y_coor * .8) - 10))
 
-                    display.blit(number, ((center+x_coor) - 5, (center+y_coor) - 10))
-                    if DISPLAY == 24:
-                            display.blit(number2, (center+(x_coor*.8) - 5, center+(y_coor*.8) - 10))
-
-            #draw the lines between the numbers
+            # draw lines between the numbers
             else:
-                 pygame.draw.line(display, WHITE, (center+(x_coor*.97),center+(y_coor*.97)), (center+(x_coor*1.03), center+(y_coor*1.03)), 1)
+                 pygame.draw.line (display, WHITE, (center + (x_coor * .97), center + (y_coor * .97)), (center + (x_coor * 1.03), center + (y_coor * 1.03)), 1)
 
-	#draw markers
+	# math function to determine end of vector position
+	y_sec = (r * .75) * (-math.cos (sec))
+	x_sec = (r * .75) * (math.sin (sec))
 
-	#math function to determine end of vector position
-	y_sec = (r*.75)*(-math.cos(sec))
-	x_sec = (r*.75)*(math.sin(sec))
+	y_min = (r * .6) * (-math.cos (min))
+	x_min = (r * .6) * (math.sin (min))
 
-	y_min = (r*.6)*(-math.cos(min))
-	x_min = (r*.6)*(math.sin(min))
+	y_hour = (r * .45) * (-math.cos (hour))
+	x_hour = (r * .45) * (math.sin (hour))
 
-	y_hour = (r*.45)*(-math.cos(hour))
-	x_hour = (r*.45)*(math.sin(hour))
+        # display AM or PM if in 12 hour mode
+	if (DISPLAY==12):
+                if (curr_time < 43200):
+                        side = font.render ("AM", 1, WHITE)
+                elif (curr_time >= 43200):
+                        side = font.render ("PM", 1, WHITE)
 
-        #Display AM or PM if in 12 hour mode
-	if DISPLAY==12:
-                if curr_time < 43200:
-                        side = font.render("AM", 1, WHITE)
-                elif curr_time >= 43200:
-                        side = font.render("PM", 1, WHITE)
-
-                display.blit(side, (center-10,center+25))
+                display.blit (side, (center - 10, center + 25))
                 
 	# display day of the week
 	day = ""
-	if (curr_count == 1):
+	if (curr_day == 1):
 		day = "MONDAY"
-	elif (curr_count == 2):
+	elif (curr_day == 2):
 		day = "TUESDAY"
-	elif (curr_count == 3):
+	elif (curr_day == 3):
 		day = "WEDNESDAY"
-	elif (curr_count == 4):
+	elif (curr_day == 4):
 		day = "THURSDAY"
-	elif (curr_count == 5):
+	elif (curr_day == 5):
 		day = "FRIDAY"
-	elif (curr_count == 6):
+	elif (curr_day == 6):
 		day = "SATURDAY"
-	elif (curr_count == 7):
+	elif (curr_day == 7):
 		day = "SUNDAY"
 	
 	day = font.render (day, 1, WHITE)
 	display.blit (day, (center - 35, center + 50))
 
 	#drawing line
-	pygame.draw.line(display, BLACK, (center, center), (center+x_hour, center+y_hour), 5)
-	pygame.draw.line(display, BLUE, (center, center), (center+x_min, center+y_min), 4)
-	pygame.draw.line(display, RED, (center, center), (center+x_sec, center+y_sec), 3)
-
+	pygame.draw.line (display, BLACK, (center, center), (center + x_hour, center + y_hour), 5)
+	pygame.draw.line (display, BLUE, (center, center), (center + x_min, center + y_min), 4)
+	pygame.draw.line (display, RED, (center, center), (center + x_sec, center + y_sec), 3)
 
 	#update display changes
-	pygame.display.update()
+	pygame.display.update ()
 
-        #reset curr_time if it reaches the end of the 24 hour period
-	if curr_time == 86400:
-                curr_time = 0
-
-	#increase by 1/60 of revolution AKA 1 second
-	sec += 2*math.pi/60
-	min += 2*math.pi/(3600)
-	hour += 2*math.pi/(3600*12)
 

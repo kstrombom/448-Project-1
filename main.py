@@ -28,7 +28,7 @@ sound = select_sound_display (choice)
 curr_time = 0;
 curr_cal = [0, 0]
 # jan 01 2016 = friday
-curr_count = 5
+curr_day = 5
 
 while True:
 
@@ -93,16 +93,15 @@ while True:
 			curr_time = input_time_menu ()
 			print ("Insert date using number keys on the pygame window (format mo 00 date 00):")
 			curr_cal = input_date_menu ()
-			curr_mo = curr_cal[0]
-			curr_date = curr_cal[1]
+			curr_day = calculateDay (curr_cal);
 			
         # analog clock screen
 	elif (toggle == 1):
-		draw_analog_clock (int (curr_time), curr_count)
+		draw_analog_clock (int (curr_time), curr_day)
 		
         # digital clock
 	elif (toggle == 2):
-		draw_digital_clock (int (curr_time), curr_count)
+		draw_digital_clock (int (curr_time), curr_day)
 
 	if (sound_toggle == True):
 		choice = choice - 1
@@ -136,5 +135,5 @@ while True:
 	#increments and loop sleep
 	sound_clock_tracker += 1
 	curr_time += .1
-	time.sleep(.1)
+	time.sleep (.1)
 
