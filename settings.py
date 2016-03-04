@@ -17,9 +17,9 @@ display = pygame.display.set_mode((HEIGHT,WIDTH),0,32)
 icon = pygame.image.load("clock.png")
 pygame.display.set_icon(icon)
 
-pygame.display.set_caption("Best Clock")
+pygame.display.set_caption("Clock")
 
-time_input = 0.0
+curr_time = 0.0
 
 #r = desired radius
 r = HEIGHT/2
@@ -36,4 +36,4 @@ BLUE = (0,0,255)
 PALE_BLUE = (26, 45, 73)
 
 def change_time_input(new_time):
-    time_input = new_time
+    curr_time = new_time
