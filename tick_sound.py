@@ -15,35 +15,35 @@ woosh = pygame.mixer.Sound('woosh.wav')
 punch = pygame.mixer.Sound('punch.wav')
 
 def sound_menu():
-    #prompt user for tick sound
-    print("Please enter your tick: \n1)Slap tick\n2)Woosh tick\n3)Punch tick\n4)No tick\nYou choose: ")
+	#prompt user for tick sound
+	print("Please enter your tick: \n1)Slap tick\n2)Woosh tick\n3)Punch tick\n4)No tick\nYou choose: ")
 
 def import_sound():
-    choice = -1
-    print("\n[Bouns -- Artificial tick!]")
+	choice = -1
+	print("\n[Bouns -- Artificial tick!]")
 
-    #get tick sound choice from user
-    while choice not in [1,2,3,4]:
-        sound_menu()
-        choice = int(input())
+	#get tick sound choice from user
+	while choice not in [1,2,3,4]:
+		sound_menu()
+		choice = int(input())
 
-        #return sound that the user chose
-        try:
-            if choice == 1:
-                return slap
-            elif choice == 2:
-                return woosh
-            elif choice == 3:
-                return punch
-            elif choice == 4:
-                print("OK. NO SOUND.")
-            else:
-                choice = -1
-                print("Please enter a valid option.")
+		#return sound that the user chose
+		try:
+			if choice == 1:
+				return slap
+			elif choice == 2:
+				return woosh
+			elif choice == 3:
+				return punch
+			elif choice == 4:
+				print("OK. NO SOUND.")
+			else:
+				choice = -1
+				print("Please enter a valid option.")
 
-        except:
-            choice = -1
-            print ("User entered a non-numeric argument.")
+		except:
+			choice = -1
+			print ("User entered a non-numeric argument.")
 
 def select_sound_display(choice):
 	#show the selected sound

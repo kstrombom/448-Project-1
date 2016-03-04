@@ -17,32 +17,36 @@ number = font.render("12", 1, BLACK)
 ############################# PRINT MENU #############################
 ######################################################################
 
-# print menu options in console
-def printMenu_console ():
-
+def printMenu_console():
+	# print each individual option
 	print ("")
-	print ("---------------------- MENU ----------------------")
+	print ("------------------MENU-----------------")
 	print ("Press a for analog clock display")
 	print ("Press d for digital clock display")
 	print ("press space to change between 24 or 12 hour mode")
 	print ("Press s to set time")
 	print ("Press m for menu options")
 	print ("Press w to toggle through sounds")
-	print ("--------------------------------------------------")
-	
-# print menu options in display
-def printMenu_display ():
+	print ("Press k for stopwatch")
+	print ("Press t for timer")
+	print ("Press b to set timer")
+	print ("Press p to pause/resume")
+	print ("Press x to reset stopwatch")
+	print ("Press c to black out screen")
+	print ("---------------------------------------")
 
+# print menu option in display
+def printMenu_display():
 	display.fill(PALE_BLUE)
-	my_list = ("A for analog clock" , "D for digital clock" , "SPACE for 24/12 hr mode" , "S to set time" , "M for menu options","W to select tick sound")
+	my_list = ("A for analog clock" , "D for digital clock" , "SPACE for 24/12 hr mode" , "S to set time" , "M for menu options","W to select tick sound",
+	"K for stopwatch","T for timer","B to set timer","P to pause/resume","X to reset stopwatch","C to black out screen")
 	for i in range(len(my_list)):
 		message = font.render(my_list[i], 1, WHITE)
 		display.blit(message, (8, i*45 + 30))
 	pygame.display.update()
 
-# draw string given text and position
-def draw_string (string_in,x,y):
-
+# Draw string given text and position
+def draw_string(string_in,x,y):
 	time_str = font.render(string_in, 1, WHITE)
 	display.blit(time_str, (x, y))
 	pygame.display.update()
@@ -50,7 +54,6 @@ def draw_string (string_in,x,y):
 ######################################################################
 ############################# GET INPUTS #############################
 ######################################################################
-
 # get time from user
 def input_time_menu ():
 
@@ -131,7 +134,7 @@ def input_date_menu ():
 								time.sleep(0.9)
 								return (str_input_date_check(input_date)[1])
 							else:
-								
+
 								draw_string("Invalid input try again!",130,7*45 + 30)
 								time.sleep(1.7)
 								i = 0
@@ -146,7 +149,3 @@ def input_date_menu ():
 	curr_time += .1
 	print("hello")
 	time.sleep(0.1)
-
-
-
-
