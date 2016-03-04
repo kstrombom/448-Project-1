@@ -25,6 +25,7 @@ def str_input_check(string):
         
         return (is_acceptable, time_in_sec)
 
+
 def hour():
 	hour = -1
 	while hour not in hour_range:
@@ -78,7 +79,8 @@ def run():
 	m = minute()
 	s = second()
 	return h + m + s
-	
+
+#solely converts back from seconds and prints the string	
 def run2():
 	ap = am_pm()
 	return ap

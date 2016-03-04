@@ -137,3 +137,5 @@ while True:
             countdown -=0.1
 
 	time.sleep(0.1)
+Status API Training Shop Blog About Pricing
+© 2016 GitHub, Inc. Terms Privacy Security Contact Help
