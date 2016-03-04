@@ -1,6 +1,7 @@
 """
 @file: clock.py
 @author: Diego Soliz, Shane Chu, Michael Bechtel, Connor Welsh, Dustin Wendt
+@author: Project 2 authors: Omar Alzubbi, Quinten Wiley, Kate Strombo, Julia Drahozal
 @date: 2016.02.14
 @brief: Clock class. Used to draw analog or digital clocks in pygame window.
 """
@@ -18,7 +19,7 @@ font = pygame.font.Font("Vonique_64_Bold.ttf", 30)
 
 #need method to draw markers
 
-def draw_digital_clock(time_input):
+def draw_digital_clock(time_input, timer):
         #create clone of total seconds
 	temp_t = time_input
 
@@ -70,7 +71,11 @@ def draw_digital_clock(time_input):
 
         #determine with mode the clock is in
         if DISPLAY == 12:
-            if hr < 10:
+            if hr == 0 and timer == 0:
+                #change the 0 hour mark to 12 for 12 hour mode
+                number3 = font.render("12", 1, WHITE)
+                display.blit(number3, ((center)-(size), (center)-(size/2)))
+            elif hr < 10:
                 #render hours normally but display then more to the right than normal
                 number3 = font.render(hours, 1, WHITE)
                 display.blit(number3, ((center)-(size/1.25), (center)-(size/2)))
@@ -86,15 +91,15 @@ def draw_digital_clock(time_input):
                     elif DISPLAY == 24 and hr > 12:
                         number3 = font.render(temp, 1, WHITE)
                         display.blit(number3, ((center)-(size), (center)-(size/2)))
-
-            if time_input<43200:
-                #print AM if total seconds is less than 12 hours
-		period = font2.render("AM", 1, WHITE)
-		display.blit(period, ((center)+(size), (center)-(size/2)))
-            else:
-                #print PM if total seconds is greater than 12 hours
-                period = font2.render("PM", 1, WHITE)
-		display.blit(period, ((center)+(size), (center)-(size/7)))
+        if timer == 0:
+                if time_input<43200:
+                    #print AM if total seconds is less than 12 hours
+                    period = font2.render("AM", 1, WHITE)
+                    display.blit(period, ((center)+(size), (center)-(size/2)))
+                else:
+                    #print PM if total seconds is greater than 12 hours
+                    period = font2.render("PM", 1, WHITE)
+                    display.blit(period, ((center)+(size), (center)-(size/7)))
 
         elif DISPLAY == 24:
             if hr < 10:
@@ -117,7 +122,6 @@ def draw_digital_clock(time_input):
         #update the window
 	pygame.display.update()
 
-#need to alter digital clock code to be stopwatch code
 def draw_stopwatch(time_input_sw):
      #create clone of total seconds
 	temp_t = time_input_sw
@@ -175,7 +179,8 @@ def draw_stopwatch(time_input_sw):
 
     #update the window
 	pygame.display.update()
-	
+
+
 
 def draw_analog_clock(time_input):
         #calculate the seconds, minutes, and hour
@@ -267,12 +272,15 @@ def draw_analog_clock(time_input):
 	min += 2*math.pi/(3600)
 	hour += 2*math.pi/(3600*12)
 
-def changeDisplay():
+def changeDisplay(timer):
         #tell method to use DISPLAY variable declared at the top of the class
         global DISPLAY
 
         #complement the value of DISPLAY
-        if DISPLAY == 12:
-                DISPLAY = 24
-        elif DISPLAY == 24:
-                DISPLAY = 12
+        if timer == 0:
+            if DISPLAY == 12:
+                    DISPLAY = 24
+            elif DISPLAY == 24:
+                    DISPLAY = 12
+Status API Training Shop Blog About Pricing
+© 2016 GitHub, Inc. Terms Privacy Security Contact Help
