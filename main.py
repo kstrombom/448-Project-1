@@ -28,7 +28,7 @@ sound = select_sound_display (choice)
 curr_time = 0;
 curr_cal = [0, 0]
 # jan 01 2016 = friday
-curr_day = 5
+curr_day = 4
 
 while True:
 
@@ -38,7 +38,7 @@ while True:
 	breakLoop = 1
 
 	# reset tracking varaibles when time hits 24:00:00
-	if curr_time > 86399:
+	if curr_time > (86399 + 1):
 		curr_time = 0
 		sound_clock_tracker = 0
 	if curr_time == 0:
