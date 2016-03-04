@@ -46,6 +46,10 @@ def runMenu():
 				elif event.key == pygame.K_m:
                                         #return to menu
 					printMenu_console()
+				elif event.key == pygame.K_k: 
+					#draw stopwatch
+					out_toggle = 3
+					return out_toggle
                                 elif event.key == pygame.K_t:
                                         #timer
 					out_toggle = 4
@@ -57,6 +61,11 @@ def runMenu():
 				elif event.key == pygame.K_SPACE:
                                         #change between 12 and 24 hour mode
 					print("need method to change to 24 hour mode")
+				#elif event.key == pygame.K_c:
+					#out_toggle = 6
+					#return out_toggle
+			#if event.type == pygame.MOUSEMOTION:
+				#printMenu_console()
 def printMenu_console():
         #print each individual option
 	print ("Press a for analog clock display")
@@ -65,6 +74,12 @@ def printMenu_console():
 	print ("Press s to set time")
 	print ("Press m for menu options")
 	print ("Press w to toggle through sounds")
+	print ("Press k for stopwatch")
+	print ("Press t for timer")
+	print ("Press b to set timer")
+	print ("Press p to pause or resume")
+	print ("Press x to reset stopwatch")
+	print ("Press c to black out screen")
 
 def printMenu_display():
 	display.fill(PALE_BLUE)
@@ -119,3 +134,7 @@ def input_menu():
 				pygame.quit()
 				sys.exit()
 	time.sleep(0.1)
+
+def black_screen():
+	display.fill(PALE_BLUE)
+	pygame.display.update()
