@@ -1,6 +1,7 @@
 """
 @file: clock.py
 @author: Diego Soliz, Shane Chu, Michael Bechtel, Connor Welsh, Dustin Wendt
+@author: Project 2 authors: Omar Alzubbi, Quinten Wiley, Kate Strombo, Julia Drahozal
 @date: 2016.02.14
 @brief: Clock class. Used to draw analog or digital clocks in pygame window.
 """
@@ -21,7 +22,7 @@ font = pygame.font.Font("Vonique_64_Bold.ttf", 30)
 def draw_digital_clock(time_input, timer):
         #create clone of total seconds
 	temp_t = time_input
-        
+
 	#calculate the hour
 	hr = temp_t/3600
 
@@ -121,8 +122,65 @@ def draw_digital_clock(time_input, timer):
         #update the window
 	pygame.display.update()
 
+def draw_stopwatch(time_input_sw):
+     #create clone of total seconds
+	temp_t = time_input_sw
 
-        
+	#calculate the hour
+	hr = temp_t/3600
+
+        #adjust the hour if in 12 hour mode
+        if DISPLAY == 12:
+            hr = hr/13+ hr%13
+
+    #recalculate temp variable
+	temp_t = temp_t%3600
+
+	#calculate the minutes and seconds
+	mins = temp_t/60
+	secs = temp_t%60
+
+    #create strings used for rendering
+	seconds = str(secs)
+	minutes = str(mins)
+	hours = str(hr)
+
+	size = 130
+
+	#used for number display
+	font = pygame.font.Font("Open 24 Display St.ttf", 80)
+
+ 	#determine if number of seconds is single digit
+	if secs < 10:
+                #render seconds with an additional 0
+                number = font.render(":0"+seconds, 1, WHITE)
+        else:
+                #render seconds normally
+                number = font.render(":"+seconds, 1, WHITE)
+
+        #determine if number of minutes is single digit
+        if mins < 10:
+                #render minutes with an additional 0
+                number2 = font.render(":0"+minutes, 1, WHITE)
+        else:
+                #render minutes normally
+                number2 = font.render(":"+minutes, 1, WHITE)
+
+        if hr < 10:
+                #render hours normally but display then more to the right than normal
+                number3 = font.render("0"+hours, 1, WHITE)
+                display.blit(number3, ((center)-(size/0.9), (center)-(size/2)))
+        else:
+                number3 = font.render(temp, 1, WHITE)
+                display.blit(number3, ((center)-(size), (center)-(size/2)))
+	#display the seconds and minutes
+    	display.blit(number, ((center)+(size/5), (center)-(size/2)))
+	display.blit(number2, ((center)-(size/2), (center)-(size/2)))
+
+    #update the window
+	pygame.display.update()
+
+
 
 def draw_analog_clock(time_input):
         #calculate the seconds, minutes, and hour
