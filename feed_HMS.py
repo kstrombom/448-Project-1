@@ -66,21 +66,24 @@ def str_input_date_check (string):
 
 # increment time
 def update_time (time):
+
 	time += .1
 	return time
 
 # increment date	
-def update_date (calendar):
-	curr_count = curr_count + 1
-	if (curr_count == 8):
-		curr_count == 1
+def update_date (calendar, day):
+
+	day = day + 1
+	if (day == 8):
+		day == 1
 	date = calendar[1]
 	calendar[1] = date + 1
 	calendar = wrapDate (calendar)
-	return calendar
+	return (calendar, day)
 
 # wrap date around to next month
 def wrapDate (calendar):
+
 	# variables
 	mo_31 = [1, 3, 5, 7, 8, 10, 12]
 	mo_30 = [4, 6, 9, 11]
@@ -138,7 +141,6 @@ def calculateDay (cal):
 	day = (count + 4) % 7 
 	if (day == 0):
 		day = 7
-	print day
 	return day
 	
 	

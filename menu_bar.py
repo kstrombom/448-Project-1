@@ -20,13 +20,16 @@ number = font.render("12", 1, BLACK)
 # print menu options in console
 def printMenu_console ():
 
+	print ("")
+	print ("---------------------- MENU ----------------------")
 	print ("Press a for analog clock display")
 	print ("Press d for digital clock display")
 	print ("press space to change between 24 or 12 hour mode")
 	print ("Press s to set time")
 	print ("Press m for menu options")
 	print ("Press w to toggle through sounds")
-
+	print ("--------------------------------------------------")
+	
 # print menu options in display
 def printMenu_display ():
 

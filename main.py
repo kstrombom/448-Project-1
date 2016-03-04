@@ -23,8 +23,8 @@ breakLoop = 1
 #choice 4 for no sound
 sound_toggle = False
 choice = 4
-
 sound = select_sound_display (choice)
+
 curr_time = 0;
 curr_cal = [0, 0]
 # jan 01 2016 = friday
@@ -41,7 +41,8 @@ while True:
 	if curr_time > 86399:
 		curr_time = 0
 		sound_clock_tracker = 0
-		updateDate (curr_cal)
+	if curr_time == 0:
+		(curr_cal, curr_day) = update_date (curr_cal, curr_day);
 
         # menu screen
 	if (toggle == 0):
@@ -68,7 +69,7 @@ while True:
 					elif event.key == pygame.K_s:
         	                                # change time/return to menu
 						toggle = 99
-						print ("input time")
+						print ("Input time:")
 						breakLoop = 0
 					elif event.key == pygame.K_m:
         	                                # return to menu
@@ -77,7 +78,7 @@ while True:
 						breakLoop = 0
 					elif event.key == pygame.K_SPACE:
         	                                # change between 12 and 24 hour mode
-						print("need method to change to 24 hour mode")
+						print("** need method to change to 24 hour mode **")
 						breakLoop = 0
 					elif event.key == pygame.K_w:
 						#turn on sound
@@ -87,7 +88,7 @@ while True:
 			time.sleep(.1)
 
 		if toggle == 99:
-               		printMenu_console ()
+               		# printMenu_console ()
 			printMenu_display ()
 			print ("Insert time using number keys on the pygame window (format hr 00 min 00 sec 00):")
 			curr_time = input_time_menu ()
