@@ -81,7 +81,6 @@ def update_date (calendar):
 
 # wrap date around to next month
 def wrapDate (calendar):
-
 	# variables
 	mo_31 = [1, 3, 5, 7, 8, 10, 12]
 	mo_30 = [4, 6, 9, 11]
@@ -137,6 +136,8 @@ def calculateDay (cal):
 				count = count + 1	
 
 	day = (count + 4) % 7 
+	if (day == 0):
+		day = 7
 	print day
 	return day
 	

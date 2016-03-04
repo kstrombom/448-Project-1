@@ -12,10 +12,10 @@ from decimal import Decimal
 
 DISPLAY = 12
 
-font = pygame.font.Font("Vonique_64_Bold.ttf", 30)
+font = pygame.font.Font ("Vonique_64_Bold.ttf", 30)
 
 # switch between 12 and 24 hours
-def changeDisplay():
+def changeDisplay ():
 
         #tell method to use DISPLAY variable declared at the top of the class
         global DISPLAY
@@ -127,22 +127,22 @@ def draw_digital_clock (curr_time, curr_day):
 	# display day of the week
 	day = ""
 	if (curr_day == 1):
-		day = "MONDAY"
+		day = " MONDAY  "
 	elif (curr_day == 2):
-		day = "TUESDAY"
+		day = " TUESDAY "
 	elif (curr_day == 3):
 		day = "WEDNESDAY"
 	elif (curr_day == 4):
-		day = "THURSDAY"
+		day = "THURSDAY "
 	elif (curr_day == 5):
-		day = "FRIDAY"
+		day = " FRIDAY  "
 	elif (curr_day == 6):
-		day = "SATURDAY"
+		day = "SATURDAY "
 	elif (curr_day == 7):
-		day = "SUNDAY"
+		day = " SUNDAY  "
 	
 	day = font2.render (day, 1, WHITE)
-	display.blit (day, (center - (size / 2), center + (size / 2)))
+	display.blit (day, (center * 2 / 3, center * 5 / 4))
 		
         # update the window
 	pygame.display.update()
@@ -216,27 +216,27 @@ def draw_analog_clock(curr_time, curr_day):
                 elif (curr_time >= 43200):
                         side = font.render ("PM", 1, WHITE)
 
-                display.blit (side, (center - 10, center + 25))
+                display.blit (side, (center - 20, center + 25))
                 
 	# display day of the week
 	day = ""
 	if (curr_day == 1):
-		day = "MONDAY"
+		day = " MONDAY  "
 	elif (curr_day == 2):
-		day = "TUESDAY"
+		day = " TUESDAY "
 	elif (curr_day == 3):
 		day = "WEDNESDAY"
 	elif (curr_day == 4):
-		day = "THURSDAY"
+		day = "THURSDAY "
 	elif (curr_day == 5):
-		day = "FRIDAY"
+		day = " FRIDAY  "
 	elif (curr_day == 6):
-		day = "SATURDAY"
+		day = "SATURDAY "
 	elif (curr_day == 7):
-		day = "SUNDAY"
+		day = " SUNDAY  "
 	
 	day = font.render (day, 1, WHITE)
-	display.blit (day, (center - 35, center + 50))
+	display.blit (day, (center * 3 / 4, center * 5 / 4))
 
 	#drawing line
 	pygame.draw.line (display, BLACK, (center, center), (center + x_hour, center + y_hour), 5)

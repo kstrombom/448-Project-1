@@ -17,7 +17,7 @@ display = pygame.display.set_mode((HEIGHT,WIDTH),0,32)
 icon = pygame.image.load("clock.png")
 pygame.display.set_icon(icon)
 
-pygame.display.set_caption("Best Clock")
+pygame.display.set_caption("Clock")
 
 time_input = 0.0
 

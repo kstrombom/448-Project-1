@@ -51,11 +51,11 @@ while True:
 		
 		while (breakLoop):
 			for event in pygame.event.get ():
-                	        #quit the program if the window is closed
+                	        # quit the program if the window is closed
 				if event.type == QUIT:
 						pygame.quit ()
 						sys.exit ()
-        	                #perform action according to key pressed
+        	                # perform action according to key pressed
 				if event.type == pygame.KEYDOWN:
 					if event.key == pygame.K_a:
         	                                # draw analog clock
@@ -111,24 +111,30 @@ while True:
 		sound_toggle = False
 
 	# play sound
-	if(sound != None) and (sound_clock_tracker%10 == 0):
+	if (sound != None) and (sound_clock_tracker%10 == 0):
 		sound.play()
 
+
 	for event in pygame.event.get():
+                # quit the program if the window is closed
 		if event.type == QUIT:
 			pygame.quit()
 			sys.exit()
+		# perform action according to which key is pressed
 		elif event.type == pygame.KEYDOWN:
+			# analog clock
 			if event.key == pygame.K_a:
 				toggle = 1
+			# digital clock
 			elif event.key == pygame.K_d:
 				toggle = 2
-			elif event.key == pygame.K_s:
-				toggle = 99
+			# toggle sound
 			elif event.key == pygame.K_w:
 				sound_toggle = True
+			# menu screen
 			elif event.key == pygame.K_m:
 				toggle = 0;
+			# 12 / 24 hour
 			elif event.key == pygame.K_SPACE:
 				changeDisplay()
 				
