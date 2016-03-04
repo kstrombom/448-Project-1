@@ -37,10 +37,15 @@ sound = select_sound_display(choice)
 countdown = time_input
 upcount = 0
 pause = 0
-
+black = 0
 while True:
 	#displaying background
 	bg = pygame.image.load("material.png")
+	#black out screen uses black background
+	if black == 0:
+		bg = pygame.image.load("material.png")
+	else:
+		bg = pygame.image.load("black.png")
 	display.blit(bg, (0, 0))
 
 	#reset tracking varaibles when time hits 24:00:00
@@ -58,15 +63,17 @@ while True:
                 elif (toggle == 5):
                     countdown = input_menu();
         #draw analog clock
-	elif (toggle == 1):
+	elif (toggle == 1 and black == 0):
 		draw_analog_clock(int(time_input))
+	elif black == 1:#wipes out the screen
+		pygame.display.update()
         #draw digial clock
-	elif (toggle == 2):
+	elif (toggle == 2 and black == 0):
                 timer = 0
 		draw_digital_clock(int(time_input),timer) #changed this method to have 2 arguments. If The second argument is 1 remove AMPM and 24 hour mode
-	elif (toggle == 3):
+	elif (toggle == 3 and black == 0):
 		draw_stopwatch(int(upcount))
-        elif (toggle == 4):
+	elif (toggle == 4 and black == 0):
                 timer = 1
                 draw_digital_clock(int(countdown),timer)
 	#elif (toggle == 6):
@@ -107,14 +114,20 @@ while True:
 				sound_toggle = True
 			elif event.key == pygame.K_x:
 				upcount = 0
+			elif event.key == pygame.K_u:
+				if black == 0:
+					black = 1
+				elif black == 1:
+					black = 0
 			elif event.key == pygame.K_m:
 				toggle = runMenu()
 			#elif event.key == pygame.K_c:
 			#	toggle = 6
 			elif event.key == pygame.K_SPACE:
 				changeDisplay(timer)
-		#elif event.type == pygame.MOUSEMOTION:
-			#toggle = runMenu()
+			elif event.type == pygame.MOUSEMOTION:
+				if black == 1:
+					black = 0
 	#increments and loop sleep
 	sound_clock_tracker += 1
 	time_input += 0.1
@@ -122,6 +135,5 @@ while True:
 		upcount += 0.1
 	if pause == 0 and countdown >= 0:
             countdown -=0.1
-        else:
-            print("Time's up")
+
 	time.sleep(0.1)
