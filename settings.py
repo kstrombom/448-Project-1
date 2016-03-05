@@ -12,12 +12,12 @@ from pygame.locals import *
 pygame.init()
 
 #set pygame window settings
-HEIGHT = WIDTH = 400
+HEIGHT = WIDTH = 600
 display = pygame.display.set_mode((HEIGHT,WIDTH),0,32)
 icon = pygame.image.load("clock.png")
 pygame.display.set_icon(icon)
 
-pygame.display.set_caption("Best Clock")
+pygame.display.set_caption("Clock")
 
 time_input = 0.0
 

@@ -10,7 +10,8 @@ import math
 import time
 from feed_HMS import *
 
-font = pygame.font.Font("Anita semi square.ttf", 20)
+f_size = 1
+font = pygame.font.Font("Anita semi square.ttf", int (20* f_size))
 number = font.render("12", 1, BLACK)
 
 ######################################################################
@@ -149,3 +150,13 @@ def input_date_menu ():
 	curr_time += .1
 	print("hello")
 	time.sleep(0.1)
+
+def changeMenuSize ():
+	global f_size
+	if (f_size == 1):
+		f_size = 1.5
+	elif (f_size == 1.5):
+		f_size = 0.5
+	elif (f_size == 0.5):
+		f_size = 1
+	return f_size

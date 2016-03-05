@@ -46,8 +46,6 @@ curr_cal = [0,0]
 # january 01, 2016 = friday
 curr_day = 4
 
-
-
 while True:
 	#displaying background
 	bg = pygame.image.load("material.png")
@@ -121,6 +119,10 @@ while True:
 					elif event.key == pygame.K_c:
 						toggle = 6
 						breakLoop = 0
+					elif event.key == pygame.K_z:
+						changeMenuSize ()
+						changeClockSize ()
+						breakLoop = 0
 
 			curr_time += .1
 			time.sleep(.1)
@@ -148,6 +150,10 @@ while True:
 	elif (toggle == 4 and black == 0):
 			timer = 1
 			draw_digital_clock(int(countdown),curr_day, timer)
+
+	elif event.key == pygame.K_z:
+			changeMenuSize ()
+			changeClockSize ()
 	#elif (toggle == 6):
 	#	black_screen()
 
@@ -213,6 +219,10 @@ while True:
 		upcount += 0.1
 	if pause == 0 and countdown >= 0:
 		countdown -=0.1
+
+	if(toggle == 6):
+			display.fill(BLACK)
+			pygame.display.update()
 
 
 	time.sleep(0.1)

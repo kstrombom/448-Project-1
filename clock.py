@@ -11,8 +11,8 @@ from settings import *
 from decimal import Decimal
 
 DISPLAY = 12
-
-font = pygame.font.Font ("Vonique_64_Bold.ttf", 30)
+f_size = 1
+font = pygame.font.Font ("Vonique_64_Bold.ttf", int (30 * f_size))
 
 # switch between 12 and 24 hours
 def changeDisplay(timer):
@@ -51,9 +51,9 @@ def draw_digital_clock (curr_time, curr_day, timer):
 	size = 130
 
 	# font -- number display
-	font = pygame.font.Font ("Open 24 Display St.ttf", 80)
+	font = pygame.font.Font ("Open 24 Display St.ttf", int (80 * f_size))
 	# font -- am / pm
-	font2 = pygame.font.Font ("Open 24 Display St.ttf", 40)
+	font2 = pygame.font.Font ("Open 24 Display St.ttf", int (40 * f_size))
 
 		# single digit seconds
 	if secs < 10:
@@ -174,7 +174,7 @@ def draw_stopwatch(time_input_sw):
 		size = 130
 
 	#used for number display
-		font = pygame.font.Font("Open 24 Display St.ttf", 80)
+		font = pygame.font.Font("Open 24 Display St.ttf", int (80 * f_size))
 
  	#determine if number of seconds is single digit
 		if secs < 10:
@@ -304,3 +304,13 @@ def draw_analog_clock(curr_time, curr_day):
 
 	#update display changes
 	pygame.display.update ()
+
+def changeClockSize ():
+	global f_size
+	if (f_size == 1):
+		f_size = 1.5
+	elif (f_size == 1.5):
+		f_size = 0.5
+	elif (f_size == 0.5):
+		f_size = 1
+	return f_size
