@@ -25,6 +25,7 @@ sound_clock_tracker = 0
 # toggle = 5 to set timer
 # toggle = 6 to black screen
 toggle = 0
+prevToggle = 0
 
 # breakLoop if 0 breaks while true loop
 breakLoop = 1
@@ -62,10 +63,6 @@ while True:
 		sound_clock_tracker = 0
 	if curr_time == 0:
 		(curr_cal, curr_day) = update_date(curr_cal, curr_day)
-
-	#for blackout
-	bg = pygame.image.load("material.png")
-	display.blit(bg, (0, 0))
 
 	################ MENU ################
 	if (toggle == 0):
@@ -120,7 +117,11 @@ while True:
 						breakLoop = 0
 					elif event.key == pygame.K_c:
 						# blackout
-						toggle = 6
+						if (toggle == 6):
+							toggle = prevToggle
+						else:
+							prevToggle = toggle
+							toggle = 6
 						breakLoop = 0
 					elif event.key == pygame.K_z:
 						# zoom
@@ -210,7 +211,12 @@ while True:
 					toggle = 0
 				# blackout
 				elif event.key == pygame.K_c:
-					toggle = 6
+						if (toggle == 6):
+							toggle = prevToggle
+						else:
+							prevToggle = toggle
+							toggle = 6
+						breakLoop = 0
 				# toggle 12/24
 				elif event.key == pygame.K_SPACE:
 					changeDisplay(timer)
@@ -227,7 +233,7 @@ while True:
 	if pause == 0 and countdown >= 0:
 		countdown -=0.1
 
-	################ BLACKOUT ################SS
+	################ BLACKOUT ################
 	if(toggle == 6):
 			display.fill(BLACK)
 			pygame.display.update()

@@ -13,8 +13,6 @@ from feed_HMS import *
 
 # global variables
 f_size = 1
-font = pygame.font.Font("Anita semi square.ttf", int (20* f_size))
-number = font.render("12", 1, BLACK)
 
 ######################################################################
 ############################# PRINT MENU #############################
@@ -40,6 +38,9 @@ def printMenu_console():
 
 # print menu options in display
 def printMenu_display():
+
+	font = pygame.font.Font("Anita semi square.ttf", int (20* f_size))
+	number = font.render("12", 1, BLACK)
 	display.fill(PALE_BLUE)
 	my_list = ("A for analog clock" , "D for digital clock" , "SPACE for 24/12 hr mode" , "S to set time" , "M for menu options","W to select tick sound",
 	"K for stopwatch","T for timer","B to set timer","P to pause/resume","X to reset stopwatch","C to black out screen")
@@ -52,10 +53,10 @@ def printMenu_display():
 def changeMenuSize ():
 	global f_size
 	if (f_size == 1):
-		f_size = 1.5
-	elif (f_size == 1.5):
-		f_size = 0.5
-	elif (f_size == 0.5):
+		f_size = 1.3
+	elif (f_size == 1.3):
+		f_size = 0.7
+	elif (f_size == 0.7):
 		f_size = 1
 	return f_size
 

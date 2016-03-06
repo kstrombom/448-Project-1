@@ -14,7 +14,6 @@ from decimal import Decimal
 # global variables
 DISPLAY = 12
 f_size = 1
-font = pygame.font.Font ("Vonique_64_Bold.ttf", int (30 * f_size))
 
 ######################################################################
 ############################### DIGITAL ##############################
@@ -206,7 +205,9 @@ def draw_stopwatch(time_input_sw):
 ######################################################################
 
 # draw analog clock
-def draw_analog_clock(curr_time, curr_day):
+def draw_analog_clock (curr_time, curr_day):
+
+	font = pygame.font.Font ("Vonique_64_Bold.ttf", int (30 * f_size))
 
 	# calculate the seconds, minutes, and hour
 	sec = curr_time * ((2 * math.pi) / 60)
@@ -319,12 +320,12 @@ def changeDisplay(timer):
 
 # resize fonts
 def changeClockSize ():
-	
+
 	global f_size
 	if (f_size == 1):
-		f_size = 1.5
-	elif (f_size == 1.5):
-		f_size = 0.5
-	elif (f_size == 0.5):
+		f_size = 1.3
+	elif (f_size == 1.3):
+		f_size = 0.7
+	elif (f_size == 0.7):
 		f_size = 1
 	return f_size
