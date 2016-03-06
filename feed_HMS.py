@@ -96,18 +96,18 @@ def wrapDate (calendar):
 
 	# months with 31 days
 	if ((mo in mo_31) and (date == 32)):
-		mo = x_mo + 1
+		mo = mo + 1
 		date = 1
 		# wrap dec to jan
 		if (mo == 13):
 			mo = 1
 	# months with 30 days
 	if ((mo in mo_30) and (date == 31)):
-		mo = x_mo + 1
+		mo = mo + 1
 		date = 1
 	# months with 29 days
 	if ((mo in mo_29) and (date == 30)):
-		mo = x_mo + 1
+		mo = mo + 1
 		date = 1
 
 	return [mo, date]
