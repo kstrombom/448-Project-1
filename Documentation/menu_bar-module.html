@@ -56,8 +56,11 @@
 <div class="fields">      <p><strong>Author:</strong>
         Diego Soliz, Shane Chu, Michael Bechtel, Connor Welsh, Dustin Wendt
       </p>
+      <p><strong>Author:</strong>
+              Quinton Wiley, Omar Alzubbi, Julia Drahozal, Kate Strombom
+            </p>
       <p><strong>Date:</strong>
-        2016.02.14
+        2016.03.06
       </p>
 </div><!-- ==================== FUNCTIONS ==================== -->
 <a name="section-Functions"></a>
@@ -82,32 +85,15 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="menu_bar-module.html#runMenu" class="summary-sig-name">runMenu</a>()</span><br />
-      Handle user input in the form of key events.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="menu_bar-pysrc.html#runMenu">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
           <td><span class="summary-sig"><a href="menu_bar-module.html#printMenu_console" class="summary-sig-name">printMenu_console</a>()</span><br />
       Draw the option strings that make up the menu</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="menu_bar-pysrc.html#printMenu_console">source&nbsp;code</a></span>
-            
+
           </td>
         </tr>
       </table>
-      
+
     </td>
   </tr>
 <tr>
@@ -120,11 +106,11 @@
       Display the menu to the user.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="menu_bar-pysrc.html#printMenu_display">source&nbsp;code</a></span>
-            
+
           </td>
         </tr>
       </table>
-      
+
     </td>
   </tr>
 <tr>
@@ -133,36 +119,72 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="menu_bar-module.html#draw_string" class="summary-sig-name">draw_string</a>(<span class="summary-sig-arg">string_in</span>,
-        <span class="summary-sig-arg">x</span>,
-        <span class="summary-sig-arg">y</span>)</span><br />
-      Show the user their time string.</td>
+          <td><span class="summary-sig"><a href="menu_bar-module.html#changeMenuSize" class="summary-sig-name">changeMenuSize</a>()</span><br />
+      Changes font size of menu to zoom in and out.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="menu_bar-pysrc.html#draw_string">source&nbsp;code</a></span>
-            
+            <span class="codelink"><a href="menu_bar-pysrc.html#changeMenuSize">source&nbsp;code</a></span>
+
           </td>
         </tr>
       </table>
-      
+
     </td>
   </tr>
+  <tr>
+      <td width="15%" align="right" valign="top" class="summary">
+        <span class="summary-type">&nbsp;</span>
+      </td><td class="summary">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td><span class="summary-sig"><a href="menu_bar-module.html#draw_string" class="summary-sig-name">draw_string</a>(<span class="summary-sig-arg">string_in</span>,
+          <span class="summary-sig-arg">x</span>,
+          <span class="summary-sig-arg">y</span>)</span><br />
+        Show the user their time string.</td>
+            <td align="right" valign="top">
+              <span class="codelink"><a href="menu_bar-pysrc.html#draw_string">source&nbsp;code</a></span>
+
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="menu_bar-module.html#input_menu" class="summary-sig-name">input_menu</a>()</span><br />
+          <td><span class="summary-sig"><a href="menu_bar-module.html#input_time_menu" class="summary-sig-name">input_time_menu</a>()</span><br />
       Get the new time from the user.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="menu_bar-pysrc.html#input_menu">source&nbsp;code</a></span>
-            
+            <span class="codelink"><a href="menu_bar-pysrc.html#input_time_menu">source&nbsp;code</a></span>
+
           </td>
         </tr>
       </table>
-      
+
     </td>
   </tr>
+
+  <tr>
+      <td width="15%" align="right" valign="top" class="summary">
+        <span class="summary-type">&nbsp;</span>
+      </td><td class="summary">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td><span class="summary-sig"><a href="menu_bar-module.html#input_date_menu" class="summary-sig-name">input_date_menu</a>()</span><br />
+        Get the new date from the user.</td>
+            <td align="right" valign="top">
+              <span class="codelink"><a href="menu_bar-pysrc.html#input_date_menu">source&nbsp;code</a></span>
+
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+
 </table>
 <!-- ==================== VARIABLES ==================== -->
 <a name="section-Variables"></a>
@@ -185,14 +207,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="font"></a><span class="summary-name">font</span> = <code title="pygame.font.Font(&quot;Anita semi square.ttf&quot;, 20)">pygame.font.Font(&quot;Anita semi square.ttf&quot;, 20)</code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="number"></a><span class="summary-name">number</span> = <code title="font.render(&quot;12&quot;, 1, BLACK)">font.render(&quot;12&quot;, 1, BLACK)</code>
+        <a name="font"></a><span class="summary-name">f_size</span> = <code title="1">1</code>
     </td>
   </tr>
 </table>
@@ -227,7 +242,7 @@
     ><span class="codelink"><a href="menu_bar-pysrc.html#runMenu">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
-  
+
   <p>Handle user input in the form of key events.</p>
   <dl class="fields">
     <dt>Returns:</dt>
@@ -248,7 +263,7 @@
     ><span class="codelink"><a href="menu_bar-pysrc.html#printMenu_console">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
-  
+
   <p>Draw the option strings that make up the menu</p>
   <dl class="fields">
     <dt>Returns:</dt>
@@ -269,7 +284,7 @@
     ><span class="codelink"><a href="menu_bar-pysrc.html#printMenu_display">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
-  
+
   <p>Display the menu to the user.</p>
   <dl class="fields">
     <dt>Returns:</dt>
@@ -292,14 +307,14 @@
     ><span class="codelink"><a href="menu_bar-pysrc.html#draw_string">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
-  
+
   <p>Show the user their time string.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
         <li><strong class="pname"><code>string_in</code></strong> (String) - The user's string</li>
         <li><strong class="pname"><code>x</code></strong> (Integer) - The x position on the pygame window</li>
-        <li><strong class="pname"><code>y</code></strong> (Integer) - The y position on the pygame window @pre takes a string, x and y 
+        <li><strong class="pname"><code>y</code></strong> (Integer) - The y position on the pygame window @pre takes a string, x and y
           coordinates</li>
     </ul></dd>
     <dt>Returns:</dt>
@@ -320,7 +335,7 @@
     ><span class="codelink"><a href="menu_bar-pysrc.html#input_menu">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
-  
+
   <p>Get the new time from the user.</p>
   <dl class="fields">
     <dt>Returns:</dt>

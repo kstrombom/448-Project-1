@@ -56,8 +56,11 @@
 <div class="fields">      <p><strong>Author:</strong>
         Diego Soliz, Shane Chu, Michael Bechtel, Connor Welsh, Dustin Wendt
       </p>
+      <p><strong>Author:</strong>
+              Quinton Wiley, Omar Alzubbi, Julia Drahozal, Kate Strombom
+            </p>
       <p><strong>Date:</strong>
-        2016.02.14
+        2016.03.06
       </p>
 </div><!-- ==================== VARIABLES ==================== -->
 <a name="section-Variables"></a>
@@ -81,24 +84,35 @@
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a name="sound_clock_tracker"></a><span class="summary-name">sound_clock_tracker</span> = <code title="0">0</code><br />
-      toggle = 0 to start menu toggle = 1 to draw analog clock toggle = 2 
-      to draw digital clock
+  </tr>
+  <tr>
+      <td width="15%" align="right" valign="top" class="summary">
+        <span class="summary-type">&nbsp;</span>
+      </td><td class="summary">
+          <a name="toggle"></a><span class="summary-name">toggle</span> = <code title="0">0</code><br />
+          =0 : menu <br>=1 : analog <br>=2 : digital <br>=3 : stopwatch <br>=4 : timer <br>=5 : set timer <br>=6 : black
+    </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="prevToggle"></a><span class="summary-name">prevToggle</span> = <code title="0">0</code>
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="toggle"></a><span class="summary-name">toggle</span> = <code title="0">0</code>
+        <a name="sound_toggle"></a><span class="summary-name">sound_toggle</span> = <code title="0">0</code>
     </td>
   </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="sound_toggle"></a><span class="summary-name">sound_toggle</span> = <code title="False">False</code>
-    </td>
-  </tr>
+  <tr>
+      <td width="15%" align="right" valign="top" class="summary">
+        <span class="summary-type">&nbsp;</span>
+      </td><td class="summary">
+          <a name="breakLoop"></a><span class="summary-name">breakLoop</span> = <code title="1">1</code>
+      </td>
+    </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
@@ -113,6 +127,66 @@
         <a name="sound"></a><span class="summary-name">sound</span> = <code title="select_sound_display(choice)">select_sound_display(choice)</code>
     </td>
   </tr>
+
+  <tr>
+      <td width="15%" align="right" valign="top" class="summary">
+        <span class="summary-type">&nbsp;</span>
+      </td><td class="summary">
+          <a name="sound_toggle"></a><span class="summary-name">sound_toggle</span> = <code title="0">0</code>
+      </td>
+    </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="timer"></a><span class="summary-name">timer</span> = <code title="0">0</code>
+    </td>
+  </tr>
+  <tr>
+      <td width="15%" align="right" valign="top" class="summary">
+        <span class="summary-type">&nbsp;</span>
+      </td><td class="summary">
+          <a name="curr_time"></a><span class="summary-name">curr_time</span> = <code title="0">0</code>
+      </td>
+    </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="countdown"></a><span class="summary-name">countdown</span> = <code title="curr_time">curr_time</code>
+    </td>
+    </tr>
+<tr>
+  <td width="15%" align="right" valign="top" class="summary">
+    <span class="summary-type">&nbsp;</span>
+  </td><td class="summary">
+      <a name="upcount"></a><span class="summary-name">upcount</span> = <code title="0">0</code>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+      </td><td class="summary">
+        <a name="pause"></a><span class="summary-name">pause</span> = <code title="0">0</code>
+    </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="curr_cal"></a><span class="summary-name">curr_cal</span> = <code title="[0,0]">[0, 0]</code>
+    </td>
+  </tr>
+<tr>
+  <td width="15%" align="right" valign="top" class="summary">
+    <span class="summary-type">&nbsp;</span>
+  </td><td class="summary">
+      <a name="curr_day"></a><span class="summary-name">curr_day</span> = <code title="4">4</code>
+  </td>
+</tr>
+
+
+
 </table>
 <!-- ==================== NAVIGATION BAR ==================== -->
 <table class="navbar" border="0" width="100%" cellpadding="0"
