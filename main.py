@@ -37,14 +37,15 @@ sound = select_sound_display(choice)
 
 timer = 0
 curr_time = 0
-countdown = curr_time
+countdown = 0
 upcount = 0
 pause = 0
 black = 0
 curr_cal = [0,0]
 # january 01, 2016 = friday
 curr_day = 4
-
+sw_start = 0
+timer_start = 0
 
 ######################################################################
 ############################# RUN PROGRAM ############################
@@ -106,6 +107,7 @@ while True:
 					elif event.key == pygame.K_k:
 						# draw stopwatch
 						toggle = 3
+						sw_start = 1
 						breakLoop = 0
 					elif event.key == pygame.K_t:
 						# draw timer
@@ -131,6 +133,10 @@ while True:
 
 			curr_time += .1
 			time.sleep(.1)
+			if(sw_start == 1 and pause ==0):
+				upcount += 0.1
+			if pause == 0 and countdown > 0:
+				countdown -=0.1
 
 	################ INPUT ################
 	if toggle == 99:
@@ -185,6 +191,7 @@ while True:
 				# stopwatch
 				elif event.key == pygame.K_k:
 						toggle = 3
+						sw_start = 1
 				# reset stopwatch
 				elif event.key == pygame.K_x:
 						upcount = 0
@@ -228,10 +235,12 @@ while True:
 	#increments and loop sleep
 	sound_clock_tracker += 1
 	curr_time += 0.1
-	if pause == 0 and toggle == 3:
+	if pause == 0 and sw_start == 1:
 		upcount += 0.1
-	if pause == 0 and countdown >= 0:
+	if pause == 0 and countdown > 0:
 		countdown -=0.1
+
+
 
 	################ BLACKOUT ################
 	if(toggle == 6):
