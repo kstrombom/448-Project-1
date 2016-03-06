@@ -1,8 +1,8 @@
 """
 @file: main.py
 @original authors: Diego Soliz, Shane Chu, Michael Bechtel, Connor Welsh, Dustin Wendt
-@New Authors: Quinton Wiley, Omar Alzubbi, Julia Drahozal, Kate Strombom
-@date: 2016.02.14
+@new authors: Quinton Wiley, Omar Alzubbi, Julia Drahozal, Kate Strombom
+@date: 2016.03.06
 @brief: Main class. Used to give user program options and change the program accordingly.
 """
 
@@ -10,7 +10,7 @@
 import time
 import math
 from clock import *
-from feed_HMS import * # our module
+from feed_HMS import * 
 from menu_bar import *
 from tick_sound import *
 

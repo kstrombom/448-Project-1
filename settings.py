@@ -1,7 +1,8 @@
 """
 @file: settings.py
-@author: Diego Soliz, Shane Chu, Michael Bechtel, Connor Welsh, Dustin Wendt
-@date: 2016.02.14
+@original authors: Diego Soliz, Shane Chu, Michael Bechtel, Connor Welsh, Dustin Wendt
+@new authors: Quinton Wiley, Omar Alzubbi, Julia Drahozal, Kate Strombom
+@date: 2016.03.06
 @brief: Settings class. Used to initialize settings for the pygame window.
 """
 
@@ -16,7 +17,6 @@ HEIGHT = WIDTH = 600
 display = pygame.display.set_mode((HEIGHT,WIDTH),0,32)
 icon = pygame.image.load("clock.png")
 pygame.display.set_icon(icon)
-
 pygame.display.set_caption("Clock")
 
 time_input = 0.0
@@ -28,7 +28,6 @@ r = HEIGHT/2
 center = HEIGHT/2
 
 #colors
-
 BLACK = (0,0,0)
 RED = (255, 0, 0)
 WHITE =(255,255,255)

@@ -1,7 +1,8 @@
 """
 @file: feed_HMS.py
-@author: Diego Soliz, Shane Chu, Michael Bechtel, Connor Welsh, Dustin Wendt
-@date: 2016.02.14
+@original authors: Diego Soliz, Shane Chu, Michael Bechtel, Connor Welsh, Dustin Wendt
+@new authors: Quinton Wiley, Omar Alzubbi, Julia Drahozal, Kate Strombom
+@date: 2016.03.06
 @brief: Feed_HMS class. Used get input from the user and update time.
 """
 
@@ -12,9 +13,10 @@
 # check if time input is valid
 def str_input_time_check (string):
 
-	# variables
+		# variables
 		is_acceptable = False
 		time_in_sec = 0
+
 		# get inputs
 		input_hr = int (string[0] + string[1])
 		input_min = int (string[3] + string[4])
@@ -33,10 +35,11 @@ def str_input_time_check (string):
 # check if date input is valid
 def str_input_date_check (string):
 
-	# variables
+		# variables
 		is_acceptable = False
 		date = [0, 0]
-	# get inputs
+
+		# get inputs
 		input_mo = int (string[0]+string[1])
 		input_date = int (string[3]+string[4])
 
@@ -138,6 +141,7 @@ def calculateDay (cal):
 			for j in xrange (29):
 				count = count + 1
 
+	# calculate day of week
 	day = (count + 4) % 7
 	if (day == 0):
 		day = 7
