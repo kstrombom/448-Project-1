@@ -115,23 +115,24 @@ def draw_digital_clock (curr_time, curr_day, timer):
 	display.blit (number2, (center - (size / 2), center - (size / 2)))
 
 	# display day of the week
-	day = ""
-	if (curr_day == 1):
-			day = " MONDAY  "
-	elif (curr_day == 2):
-			day = " TUESDAY "
-	elif (curr_day == 3):
-			day = "WEDNESDAY"
-	elif (curr_day == 4):
-			day = "THURSDAY "
-	elif (curr_day == 5):
-			day = " FRIDAY  "
-	elif (curr_day == 6):
-			day = "SATURDAY "
-	elif (curr_day == 7):
-			day = " SUNDAY  "
-	day = font2.render (day, 1, WHITE)
-	display.blit (day, (center * 2 / 3, center * 5 / 4))
+	if (timer == 0):
+		day = ""
+		if (curr_day == 1):
+				day = " MONDAY  "
+		elif (curr_day == 2):
+				day = " TUESDAY "
+		elif (curr_day == 3):
+				day = "WEDNESDAY"
+		elif (curr_day == 4):
+				day = "THURSDAY "
+		elif (curr_day == 5):
+				day = " FRIDAY  "
+		elif (curr_day == 6):
+				day = "SATURDAY "
+		elif (curr_day == 7):
+				day = " SUNDAY  "
+		day = font2.render (day, 1, WHITE)
+		display.blit (day, (center * 2 / 3, center * 5 / 4))
 
 	# update window
 	pygame.display.update()

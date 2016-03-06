@@ -34,6 +34,7 @@ def printMenu_console():
 	print ("Press p to pause/resume")
 	print ("Press x to reset stopwatch")
 	print ("Press c to black out screen")
+	print ("Press z to zoom ")
 	print ("---------------------------------------")
 
 # print menu options in display
@@ -43,10 +44,10 @@ def printMenu_display():
 	number = font.render("12", 1, BLACK)
 	display.fill(PALE_BLUE)
 	my_list = ("A for analog clock" , "D for digital clock" , "SPACE for 24/12 hr mode" , "S to set time" , "M for menu options","W to select tick sound",
-	"K for stopwatch","T for timer","B to set timer","P to pause/resume","X to reset stopwatch","C to black out screen")
+	"K for stopwatch","T for timer","B to set timer","P to pause/resume","X to reset stopwatch","C to black out screen", "Z to zoom")
 	for i in range(len(my_list)):
 		message = font.render(my_list[i], 1, WHITE)
-		display.blit(message, (8, i*45 + 30))
+		display.blit(message, (8, i*30 + 30))
 	pygame.display.update()
 
 # resize fonts
@@ -74,8 +75,8 @@ def input_time_menu ():
 	i = 0
 	input_time = list("00:00:00")
 	while True:
-		draw_string("Input Time (00:00:00-23:59:59):",10,6*45 + 30)
-		draw_string(''.join(input_time),8,7*45 + 30)
+		draw_string("Input Time (00:00:00-23:59:59):",10,12*30 + 90)
+		draw_string(''.join(input_time),8,13*30 + 90)
 		# get key press
 		for event in pygame.event.get():
 			if event.type == pygame.KEYDOWN:
@@ -91,19 +92,19 @@ def input_time_menu ():
 							i += 1
 						display.fill(PALE_BLUE)
 						printMenu_display()
-						draw_string(''.join(input_time),8,7*45 + 30)
+						draw_string(''.join(input_time),8,13*30 + 90)
 						print (input_time)
 						# all numbers set
 						if i == 8:
 							# valid inputs
 							if str_input_time_check(input_time)[0]:
-								draw_string("Time Set Successfully!",130,7*45 + 30)
+								draw_string("Time Set Successfully!",130,13*30 + 90)
 								i = 0
 								time.sleep(0.9)
 								return (str_input_time_check(input_time)[1])
 							# invalid inputs
 							else:
-								draw_string("Invalid input try again!",130,7*45 + 30)
+								draw_string("Invalid input try again!",130,13*30 + 90)
 								time.sleep(1.7)
 								i = 0
 								display.fill(PALE_BLUE)
@@ -125,8 +126,8 @@ def input_date_menu ():
 	i = 0
 	input_date = list("00/00")
 	while True:
-		draw_string("Input Date (01/01-12/31):",10,6*45 + 30)
-		draw_string(''.join(input_date),8,7*45 + 30)
+		draw_string("Input Date (01/01-12/31):",10,12*30 + 90)
+		draw_string(''.join(input_date),8,13*30 + 90)
 		# get key press
 		for event in pygame.event.get():
 			if event.type == pygame.KEYDOWN:
@@ -142,19 +143,19 @@ def input_date_menu ():
 							i += 1
 						display.fill(PALE_BLUE)
 						printMenu_display()
-						draw_string(''.join(input_date),8,7*45 + 30)
+						draw_string(''.join(input_date),8,13*30 + 90)
 						print (input_date)
 						# all numbers set
 						if i == 5:
 							# valid inputs
 							if str_input_date_check(input_date)[0]:
-								draw_string("Date Set Successfully!",130,7*45 + 30)
+								draw_string("Date Set Successfully!",130,13*30 + 90)
 								i = 0
 								time.sleep(0.9)
 								return (str_input_date_check(input_date)[1])
 							# invalid inputs
 							else:
-								draw_string("Invalid input try again!",130,7*45 + 30)
+								draw_string("Invalid input try again!",130,13*30 + 90)
 								time.sleep(1.7)
 								i = 0
 								display.fill(PALE_BLUE)
@@ -171,6 +172,9 @@ def input_date_menu ():
 
 # draw string given text and position
 def draw_string(string_in,x,y):
+
+	font = pygame.font.Font("Anita semi square.ttf", int (20* f_size))
+
 	time_str = font.render(string_in, 1, WHITE)
 	display.blit(time_str, (x, y))
 	pygame.display.update()
