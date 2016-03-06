@@ -10,13 +10,11 @@
 import time
 import math
 from clock import *
-from feed_HMS import * 
+from feed_HMS import *
 from menu_bar import *
 from tick_sound import *
 
-# input menu() waits for user to input valid time
-# in format 00 00 00 to then return and int
-
+# initialize variables
 
 sound_clock_tracker = 0
 # toggle = 0 to start menu
@@ -36,7 +34,7 @@ sound_toggle = False
 choice = 4
 sound = select_sound_display(choice)
 
-# initialize variables
+timer = 0
 curr_time = 0
 countdown = curr_time
 upcount = 0
@@ -46,8 +44,14 @@ curr_cal = [0,0]
 # january 01, 2016 = friday
 curr_day = 4
 
+
+######################################################################
+############################# RUN PROGRAM ############################
+######################################################################
+
 while True:
-	#displaying background
+
+	#display background
 	bg = pygame.image.load("material.png")
 	display.blit(bg, (0, 0))
 	breakLoop = 1
@@ -59,17 +63,11 @@ while True:
 	if curr_time == 0:
 		(curr_cal, curr_day) = update_date(curr_cal, curr_day)
 
-	#for Blackout ***not done***
+	#for blackout
 	bg = pygame.image.load("material.png")
-
-	#blackout screen uses black background
-	if black == 0:
-		bg = pygame.image.load("material.png")
-	else:
-		bg = pygame.image.load("black.png")
 	display.blit(bg, (0, 0))
 
-	# show menu
+	################ MENU ################
 	if (toggle == 0):
 
 		printMenu_console ()
@@ -105,21 +103,27 @@ while True:
 						print("need method to change to 24 hour mode")
 						breakLoop = 0
 					elif event.key == pygame.K_w:
+						# toggle sounds
 						sound_toggle = True
 						breakLoop = 0
 					elif event.key == pygame.K_k:
+						# draw stopwatch
 						toggle = 3
 						breakLoop = 0
 					elif event.key == pygame.K_t:
+						# draw timer
 						toggle = 4
 						breakLoop = 0
 					elif event.key == pygame.K_b:
+						# set timer
 						toggle = 5
 						breakLoop = 0
 					elif event.key == pygame.K_c:
+						# blackout
 						toggle = 6
 						breakLoop = 0
 					elif event.key == pygame.K_z:
+						# zoom
 						changeMenuSize ()
 						changeClockSize ()
 						breakLoop = 0
@@ -127,6 +131,7 @@ while True:
 			curr_time += .1
 			time.sleep(.1)
 
+	################ INPUT ################
 	if toggle == 99:
 		#printMenu_console()
 		printMenu_display()
@@ -136,82 +141,84 @@ while True:
 		curr_cal = input_date_menu()
 		curr_day = calculateDay (curr_cal)
 		toggle = -1
+	################ MENU ################
 	elif toggle == 5:
 		countdown = input_time_menu()
 		toggle = -1
-	elif (toggle == 1 and black == 0):
+	################ ANALOG ################
+	elif (toggle == 1):
 			draw_analog_clock(int(curr_time), curr_day)
-		#draw digial clock
-	elif (toggle == 2 and black == 0):
+	################ DIGITAL ################
+	elif (toggle == 2):
 			timer = 0
 			draw_digital_clock(int(curr_time),curr_day, timer) #changed this method to have 2 arguments. If The second argument is 1 remove AMPM and 24 hour mode
-	elif (toggle == 3 and black == 0):
+	################ STOPWATCH ################
+	elif (toggle == 3):
 			draw_stopwatch(int(upcount))
-	elif (toggle == 4 and black == 0):
+	################ TIMER ################
+	elif (toggle == 4):
 			timer = 1
 			draw_digital_clock(int(countdown),curr_day, timer)
-
-	elif event.key == pygame.K_z:
-			changeMenuSize ()
-			changeClockSize ()
-	#elif (toggle == 6):
-	#	black_screen()
-
+	################ SOUNDS ################
 	if (sound_toggle == True):
 		choice = choice - 1
 		if choice == 0:
 			choice = 4
 		sound = select_sound_display(choice)
 		sound_toggle = False
-
-	#playing sound
 	if(sound != None) and (sound_clock_tracker%10 == 0):
 		sound.play()
 
-
-		#################GGGGGGGGGGGGOOOOOOOOOOOOOOOOOODDDDDDDDDDDD
-
-
+	################ WHILE RUNNING ################
 	for event in pygame.event.get():
 		if event.type == QUIT:
 			pygame.quit()
 			sys.exit()
 		elif event.type == pygame.KEYDOWN:
+				# analog
 				if event.key == pygame.K_a:
 					toggle = 1
-							#this next elif is to pause the timer or stopwatch
+				# digital
+				elif event.key == pygame.K_d:
+						toggle = 2
+				# stopwatch
+				elif event.key == pygame.K_k:
+						toggle = 3
+				# reset stopwatch
+				elif event.key == pygame.K_x:
+						upcount = 0
+				# timer
+				elif event.key == pygame.K_t:
+						toggle = 4
+				# set timer
+				elif event.key == pygame.K_b:
+						toggle = 5
+				# pause
 				elif event.key == pygame.K_p:
 						if pause == 0:
 							pause =1
 						elif pause == 1:
 							pause = 0
-					# digital clock
-				elif event.key == pygame.K_d:
-						toggle = 2
-				elif event.key == pygame.K_k:
-						toggle = 3
-				elif event.key == pygame.K_b:
-						toggle = 5
+				# set time
 				elif event.key == pygame.K_s:
 						toggle = 0
+				# toggle sounds
 				elif event.key == pygame.K_w:
 						sound_toggle = True
-				elif event.key == pygame.K_x:
-						upcount = 0
-				elif event.key == pygame.K_u:
-					if black == 0:
-						black = 1
-					elif black == 1:
-						black = 0
+				# menu options
 				elif event.key == pygame.K_m:
 					toggle = 0
-				#elif event.key == pygame.K_c:
-				#	toggle = 6
+				# blackout
+				elif event.key == pygame.K_c:
+					toggle = 6
+				# toggle 12/24
 				elif event.key == pygame.K_SPACE:
 					changeDisplay(timer)
-				elif event.type == pygame.MOUSEMOTION:
-					if black == 1:
-						black = 0
+				# zoom
+				elif event.key == pygame.K_z:
+					changeMenuSize ()
+					changeClockSize ()
+
 	#increments and loop sleep
 	sound_clock_tracker += 1
 	curr_time += 0.1
@@ -220,9 +227,9 @@ while True:
 	if pause == 0 and countdown >= 0:
 		countdown -=0.1
 
+	################ BLACKOUT ################SS
 	if(toggle == 6):
 			display.fill(BLACK)
 			pygame.display.update()
-
 
 	time.sleep(0.1)

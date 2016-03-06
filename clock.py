@@ -141,10 +141,10 @@ def draw_digital_clock (curr_time, curr_day, timer):
 ############################## STOPWATCH #############################
 ######################################################################
 
-# draw stopwatch 
+# draw stopwatch
 def draw_stopwatch(time_input_sw):
 
-	 	#create clone of total seconds
+		#create clone of total seconds
 		temp_t = time_input_sw
 
 		#calculate the hour
@@ -171,7 +171,7 @@ def draw_stopwatch(time_input_sw):
 		#used for number display
 		font = pygame.font.Font("Open 24 Display St.ttf", int (80 * f_size))
 
- 		#determine if number of seconds is single digit
+		#determine if number of seconds is single digit
 		if secs < 10:
 				#render seconds with an additional 0
 				number = font.render(":0"+seconds, 1, WHITE)
@@ -306,6 +306,7 @@ def draw_analog_clock(curr_time, curr_day):
 
 # switch between 12 and 24 hours
 def changeDisplay(timer):
+
 		#tell method to use DISPLAY variable declared at the top of the class
 		global DISPLAY
 
@@ -318,6 +319,7 @@ def changeDisplay(timer):
 
 # resize fonts
 def changeClockSize ():
+	
 	global f_size
 	if (f_size == 1):
 		f_size = 1.5
@@ -326,4 +328,3 @@ def changeClockSize ():
 	elif (f_size == 0.5):
 		f_size = 1
 	return f_size
-

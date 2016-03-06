@@ -113,10 +113,6 @@ def input_time_menu ():
 				pygame.quit()
 				sys.exit()
 
-	curr_time += .1
-	print("hello")
-	time.sleep(0.1)
-
 # get date from user
 def input_date_menu ():
 
@@ -168,10 +164,6 @@ def input_date_menu ():
 				pygame.quit()
 				sys.exit()
 
-	curr_time += .1
-	print("hello")
-	time.sleep(0.1)
-
 ######################################################################
 ############################### HELPERS ##############################
 ######################################################################
@@ -181,4 +173,3 @@ def draw_string(string_in,x,y):
 	time_str = font.render(string_in, 1, WHITE)
 	display.blit(time_str, (x, y))
 	pygame.display.update()
-
