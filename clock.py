@@ -22,6 +22,10 @@ f_size = 1
 # draw digital clock
 def draw_digital_clock (curr_time, curr_day, timer):
 
+	if(curr_time == 0 and timer == 1):
+		font = pygame.font.Font("Anita semi square.ttf", int (20* f_size))
+		message = font.render("TIME'S UP", 1, WHITE)
+		display.blit(message, (240, 12*30 + 30))
 	# variables:
 	temp_t = curr_time
 	# hour
