@@ -37,7 +37,7 @@ def draw_digital_clock (curr_time, curr_day, timer):
 	secs = temp_t % 60
 	seconds = str (secs)
 	# size
-	size = 130
+	size = 130 * f_size
 
 	# font -- number display
 	font = pygame.font.Font ("Open 24 Display St.ttf", int (80 * f_size))
@@ -165,7 +165,7 @@ def draw_stopwatch(time_input_sw):
 		minutes = str(mins)
 		hours = str(hr)
 
-		size = 130
+		size = 130 * f_size
 
 		#used for number display
 		font = pygame.font.Font("Open 24 Display St.ttf", int (80 * f_size))
